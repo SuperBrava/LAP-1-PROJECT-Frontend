@@ -7,6 +7,7 @@ body{
     background-color: #e6f3fb;
 }
 
+
 .navbar {
     font-family:'retrofont', Courier, monospace;
     background-color: #b2cee0;
@@ -15,4 +16,10 @@ body{
 
 .nav-item > a:hover {
     text-decoration: underline;    
-  }
+}
+
+.dogelogo{
+    height: 45px;
+    width: 45px;
+    margin: 0 15px 0 0;
+}
