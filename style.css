@@ -81,6 +81,7 @@ textarea{
    font-family: 'retrofont';
    padding: 0.4;
    padding-bottom: 250px;
+   overflow: hidden;
 }
 
 @font-face {
