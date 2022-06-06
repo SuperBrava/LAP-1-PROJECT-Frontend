@@ -109,3 +109,16 @@ body{
     width: 45px;
     margin: 0 15px 0 0;
 }
+
+.post{
+    padding: 15px;
+    background-color: lightgray;
+    font-family: 'retrofont';
+    font-size: 8pt;
+}
+.post .btn{
+    background-color: rgba(243, 237, 237, 0.753);
+    font-family: 'retrofont';
+    display: flex;
+    flex-direction: row-reverse;
+}
