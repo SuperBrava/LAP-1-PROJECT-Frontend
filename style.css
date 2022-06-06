@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'retrofont';
+    src: url('./assets/retrofont.ttf');
+}
+
+body{
+    background-color: #e6f3fb;
+}
+
+.navbar {
+    font-family:'retrofont', Courier, monospace;
+    background-color: #b2cee0;
+    height: 50px;
+}
+
+.nav-item > a:hover {
+    text-decoration: underline;    
+  }
