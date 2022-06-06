@@ -1,11 +1,20 @@
 .btn{
-    background-color: rgba(216, 212, 212, 0.753);
+    background-color: rgba(243, 237, 237, 0.753);
     font-family: 'retrofont';
+    align-self: flex-end;
 }
 
 .card-title, .card-text{
     text-align: center;
     font-family: 'retrofont';
+    font-size: 10pt;
+    padding-top: 20px;
+
+}
+
+.card-icon{
+    width: 50px;
+    padding: 5px;
 }
 
 .container{
@@ -13,7 +22,7 @@
 }
 
 .container2{
-    padding-top: 200px;
+    padding-top: 125px;
 }
 
 h1{
@@ -26,6 +35,8 @@ h1{
 .card{
     background-color: lightgray;
     font-family: 'retrofont';
+    font-size: 8pt;
+    
 }
 
 @font-face {
