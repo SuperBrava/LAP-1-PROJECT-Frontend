@@ -1,3 +1,33 @@
+.btn{
+    background-color: rgba(216, 212, 212, 0.753);
+    font-family: 'retrofont';
+}
+
+.card-title, .card-text{
+    text-align: center;
+    font-family: 'retrofont';
+}
+
+.container{
+    padding-top: 150px;
+}
+
+.container2{
+    padding-top: 200px;
+}
+
+h1{
+    font-family: 'retrofont';
+    display: flex;
+    justify-content: space-around;
+    padding-top: 125px;
+}
+
+.card{
+    background-color: lightgray;
+    font-family: 'retrofont';
+}
+
 @font-face {
     font-family: 'retrofont';
     src: url('./assets/retrofont.ttf');
