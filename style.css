@@ -4,6 +4,14 @@
     align-self: flex-end;
 }
 
+.postbtn{
+    border: none;
+    display: flex;
+    
+}
+
+/*need to align the buttons*/
+
 .card-title, .card-text{
     text-align: center;
     font-family: 'retrofont';
@@ -63,8 +71,6 @@ for now for max char but perhaps a fixed one would look better
     font-family: 'retrofont';
     font-size: 8pt;
     padding: 280px 0px 0px 275px;
-    
-    
     }
 */ 
 
