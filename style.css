@@ -37,7 +37,7 @@ h1{
     font-family: 'retrofont';
     display: flex;
     justify-content: space-around;
-    padding-top: 125px;
+    padding-top: 75px;
 }
 
 h2{
@@ -82,6 +82,8 @@ textarea{
    padding: 0.4;
    padding-bottom: 250px;
    overflow: hidden;
+   display: inline-block;
+   float: left;
 }
 
 @font-face {
