@@ -32,11 +32,49 @@ h1{
     padding-top: 125px;
 }
 
+h2{
+    font-size: 14pt;
+    font-family: 'retrofont';
+    margin-left: 150px;
+}
+
 .card{
     background-color: lightgray;
     font-family: 'retrofont';
     font-size: 8pt;
     
+}
+
+#postbar{
+    margin-left:75px;
+}
+
+.textareadiv{
+    position: relative;
+    display: block;
+}
+
+/*This is not working still working on it, because I've put a placeholder
+for now for max char but perhaps a fixed one would look better 
+
+.textareadiv ::before{
+    content: 'Max 250 characters';
+    position: absolute;
+    font-family: 'retrofont';
+    font-size: 8pt;
+    padding: 280px 0px 0px 275px;
+    
+    
+    }
+*/ 
+
+textarea{
+    border: none;
+    height: 300px;
+    width: 400px;
+   font-family: 'retrofont';
+   padding: 0.4;
+   padding-bottom: 250px;
 }
 
 @font-face {
