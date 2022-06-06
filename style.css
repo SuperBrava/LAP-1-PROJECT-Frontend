@@ -8,6 +8,21 @@
     font-family: 'retrofont';
 }
 
+.container{
+    padding-top: 150px;
+}
+
+.container2{
+    padding-top: 200px;
+}
+
+h1{
+    font-family: 'retrofont';
+    display: flex;
+    justify-content: space-around;
+    padding-top: 125px;
+}
+
 .card{
     background-color: lightgray;
     font-family: 'retrofont';
