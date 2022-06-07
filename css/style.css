@@ -2,13 +2,17 @@
 .btn{
     background-color: rgba(224, 211, 211, 0.753);
     font-family: 'retrofont';
-    align-self: flex-end;
     margin: 10px;
     font-size: 10pt;
+    display:flex;
+    width: fit-content;
+    align-self: flex-end;
     box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753);
     box-shadow: 2px 2px 0px 0px rgba(80, 78, 78, 0.753);
     
 }
+
+
 
 .btn:hover{
     background-color:#233db1;
@@ -19,14 +23,23 @@
 .card-title, .card-text{
     text-align: center;
     font-family: 'retrofont';
-    font-size: 10pt;
     padding-top: 20px;
+}
 
+.card-text1{
+    font-size: 14pt;
+    text-align: center;
+    padding-top: 15px;
 }
 
 .buttonlist{
     padding-top: 340px;
     margin-left: 35px;
+}
+
+.card-icon2{
+    object-fit: cover;
+    height: 15px;
 }
 
 .btnlist{
@@ -40,6 +53,20 @@
     padding: 5px;
     margin-left: 35px;
 }
+
+
+
+.card-icon3{
+    object-fit: cover;
+    height: 80px;
+}
+
+.card-icon4{
+    transform: rotate(180deg);
+    object-fit: cover;
+    height: 80px;
+}
+
 
 .container{
     padding-top: 80px;
@@ -59,7 +86,7 @@ h1{
 h2{
     font-size: 14pt;
     font-family: 'retrofont';
-    margin-left: 150px;
+    text-align: center;
 }
 
 h4{
@@ -69,15 +96,19 @@ h4{
     padding-left: 7px;
     padding: 5px;
     margin: 5px;
-    box-shadow: 7px 7px 7px 7px rgba(224, 211, 211, 0.753),
-     2px 2px 0px 0px rgba(80, 78, 78, 0.753);
+    box-shadow: 2px 2px 2px 2px rgba(224, 211, 211, 0.753),
+     1px 1px 0px 0px rgba(80, 78, 78, 0.753);
+}
+
+h6{
+    text-align: center;
+    padding-top: 40px;
 }
 
 .card{
     background-color: rgb(196, 189, 189);
     font-family: 'retrofont';
-    font-size: 8pt;
-    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753),
+    box-shadow: 4px 4px 4px 4px rgba(224, 211, 211, 0.753),
     2px 2px 0px 0px rgba(80, 78, 78, 0.753);
 }
 
@@ -87,8 +118,11 @@ h4{
 }
 
 .textareadiv{
-    position: relative;
-   
+display: flex;
+text-align: center;
+align-items: center;
+width: 1000px;
+
 }
 
 /*This is not working still working on it, because I've put a placeholder
@@ -106,14 +140,10 @@ for now for max char but perhaps a fixed one would look better
 
 textarea{
     border: none;
-    max-height: 300px;
-    max-width: 400px;
-   font-family: 'retrofont';
-   overflow: hidden;
-   display: flex;
-   float: left;
-   
+    font-family: 'retrofont';
+    overflow: hidden; 
 }
+
 
 
 @font-face {
