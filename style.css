@@ -1,12 +1,8 @@
+
 .btn{
     background-color: rgba(243, 237, 237, 0.753);
     font-family: 'retrofont';
     align-self: flex-end;
-}
-
-.postbtn{
-    border: none; 
-    
 }
 
 /*need to align the buttons*/
@@ -17,6 +13,17 @@
     font-size: 10pt;
     padding-top: 20px;
 
+}
+
+.buttonlist{
+    padding-top: 340px;
+    margin-left: 35px;
+}
+
+.btnlist{
+    display: flex;
+    flex: row;
+    list-style: none;
 }
 
 .card-icon{
@@ -56,10 +63,6 @@ h2{
     margin-left:75px;
 }
 
-.textareadiv{
-    position: relative;
-    display: block;
-}
 
 /*This is not working still working on it, because I've put a placeholder
 for now for max char but perhaps a fixed one would look better 
@@ -73,17 +76,18 @@ for now for max char but perhaps a fixed one would look better
     }
 */ 
 
+
 textarea{
     border: none;
     height: 300px;
     width: 400px;
    font-family: 'retrofont';
-   padding: 0.4;
-   padding-bottom: 250px;
    overflow: hidden;
-   display: inline-block;
+   display: flex;
    float: left;
+   
 }
+
 
 @font-face {
     font-family: 'retrofont';
@@ -116,6 +120,7 @@ body{
     background-color: lightgray;
     font-family: 'retrofont';
     font-size: 8pt;
+    
 }
 .post .btn{
     background-color: rgba(243, 237, 237, 0.753);
