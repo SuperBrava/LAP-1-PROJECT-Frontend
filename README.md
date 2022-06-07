@@ -7,19 +7,19 @@ Create a community platform to display journal entries from other users - utilis
 ## Requirements
 Your website should have the following functionality for users:
 - [ ] Users should be able to visit the website and anonymously post journal entries.
-- [ ] Users should be limited to how many characters they can put in an entry.
+- [x] Users should be limited to how many characters they can put in an entry.
 - [ ] Users should be able to add gifs from giphy in an entry.
 - [ ] Users should be able to view other peoples' entries.
-- [ ] Users should be able to react to other peoples’ entries with an emoji.
-- [ ] Users should have three emojis to choose from.
+- [x] Users should be able to react to other peoples’ entries with an emoji.
+- [x] Users should have three emojis to choose from.
 - [ ] Users should be able to comment on other people’s entries.
 
 Your project should meet the following technical requirements:
 - [ ] Aim for minimum 60% test coverage (In future projects this will be enforced with an aim for 80%)
-- [ ] Your repos should have excellent READMEs. See our Writing READMEs guide for details.
-- [ ] Your website should be deployed (You could use eg. Netlify for client, Heroku for server)
-- [ ] Your codebase should make good use of the technologies we have covered so far on the course: HTML, CSS & vanilla JS
-- [ ] You may bring in some node libraries for specialised behaviour eg. dayjs but no large front end frameworks such as React.
+- [x] Your repos should have excellent READMEs. See our Writing READMEs guide for details.
+- [x] Your website should be deployed (You could use eg. Netlify for client, Heroku for server)
+- [x] Your codebase should make good use of the technologies we have covered so far on the course: HTML, CSS & vanilla JS
+- [x] You may bring in some node libraries for specialised behaviour eg. dayjs but no large front end frameworks such as React.
 - [ ] Your website should not have a database connected, instead any data sent and stored in your backend should be saved within .json files.
 
 ## Table of Contents (Optional)
@@ -36,9 +36,7 @@ If your README is long, add a table of contents to make it easy for users to fin
 `npm i express`
 `npm i nodemon`
 `npm i jest --save-dev`
-
-Also using:
-Bootstrap
+`npm install emojionearea@^3.0.0`
 
 ## Credits
 
