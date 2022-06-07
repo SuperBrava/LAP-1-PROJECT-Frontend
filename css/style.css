@@ -10,6 +10,10 @@
     
 }
 
+.btn:hover{
+    background-color:#233db1;
+}
+
 /*need to align the buttons*/
 
 .card-title, .card-text{
@@ -69,10 +73,6 @@ h4{
      2px 2px 0px 0px rgba(80, 78, 78, 0.753);
 }
 
-.card-icon2{
-   
-}
-
 .card{
     background-color: rgb(196, 189, 189);
     font-family: 'retrofont';
@@ -106,8 +106,8 @@ for now for max char but perhaps a fixed one would look better
 
 textarea{
     border: none;
-    height: 300px;
-    width: 400px;
+    max-height: 300px;
+    max-width: 400px;
    font-family: 'retrofont';
    overflow: hidden;
    display: flex;
@@ -149,14 +149,19 @@ body{
 .post{
     margin-top: 20px;
     padding: 15px;
-    background-color: lightgray;
+    background-color: rgb(196, 189, 189);
     font-family: 'retrofont';
     font-size: 8pt;
-    
+    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753),
+    2px 2px 0px 0px rgba(80, 78, 78, 0.753);
 }
+    
+
 .post .btn{
     background-color: rgba(243, 237, 237, 0.753);
     font-family: 'retrofont';
     display: flex;
     flex-direction: row-reverse;
+    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753),
+    2px 2px 0px 0px rgba(80, 78, 78, 0.753);
 }
