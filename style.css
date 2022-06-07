@@ -1,8 +1,13 @@
 
 .btn{
-    background-color: rgba(243, 237, 237, 0.753);
+    background-color: rgba(224, 211, 211, 0.753);
     font-family: 'retrofont';
     align-self: flex-end;
+    margin: 10px;
+    font-size: 10pt;
+    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753);
+    box-shadow: 2px 2px 0px 0px rgba(80, 78, 78, 0.753);
+    
 }
 
 /*need to align the buttons*/
@@ -27,12 +32,13 @@
 }
 
 .card-icon{
-    width: 50px;
+    width: 70px;
     padding: 5px;
+    margin-left: 35px;
 }
 
 .container{
-    padding-top: 150px;
+    padding-top: 80px;
 }
 
 .container2{
@@ -52,10 +58,23 @@ h2{
     margin-left: 150px;
 }
 
+h4{
+    font-size: 8pt;
+    color: white;
+    background-color: #233db1;
+    padding-left: 7px;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 7px 7px 7px 7px rgba(224, 211, 211, 0.753);
+    box-shadow: 2px 2px 0px 0px rgba(80, 78, 78, 0.753);
+}
+
 .card{
-    background-color: rgb(243, 239, 239);
+    background-color: rgb(196, 189, 189);
     font-family: 'retrofont';
     font-size: 8pt;
+    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753);
+    box-shadow: 2px 2px 0px 0px rgba(80, 78, 78, 0.753);
     
 }
 
