@@ -16,8 +16,6 @@
     text-align: center;
     font-family: 'retrofont';
     font-size: 10pt;
-    padding-top: 20px;
-
 }
 
 .buttonlist{
@@ -35,6 +33,7 @@
     width: 70px;
     padding: 5px;
     margin-left: 35px;
+    float: left;
 }
 
 .container{
@@ -65,31 +64,23 @@ h4{
     padding-left: 7px;
     padding: 5px;
     margin: 5px;
-    box-shadow: 7px 7px 7px 7px rgba(224, 211, 211, 0.753),
-     2px 2px 0px 0px rgba(80, 78, 78, 0.753);
-}
-
-.card-icon2{
-   
+    box-shadow: 2px 2px 2px 2px rgba(224, 211, 211, 0.753),
+    1px 1px 0px 0px rgba(80, 78, 78, 0.753);
 }
 
 .card{
     background-color: rgb(196, 189, 189);
     font-family: 'retrofont';
     font-size: 8pt;
-    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753),
-    2px 2px 0px 0px rgba(80, 78, 78, 0.753);
+    box-shadow: 3px 3px 3px 3px rgba(224, 211, 211, 0.753);
+    box-shadow: 2px 2px 0px 0px rgba(58, 57, 57, 0.753);
+    
 }
-
 
 #postbar{
     margin-left:75px;
 }
 
-.textareadiv{
-    position: relative;
-   
-}
 
 /*This is not working still working on it, because I've put a placeholder
 for now for max char but perhaps a fixed one would look better 
@@ -118,12 +109,11 @@ textarea{
 
 @font-face {
     font-family: 'retrofont';
-    src: url('../assets/retrofont.ttf');
+    src: url('./assets/retrofont.ttf');
 }
 
 body{
     background-color: #e6f3fb;
-    font-family: 'retrofont';
 }
 
 
@@ -131,9 +121,6 @@ body{
     font-family:'retrofont', Courier, monospace;
     background-color: #233db1;
     height: 50px;
-    box-shadow: 3px 3px 3px 3px rgba(224, 211, 211, 0.753),
-    2px 2px 0px 0px rgba(80, 78, 78, 0.753);
-
 }
 
 .nav-item > a:hover {
@@ -147,7 +134,6 @@ body{
 }
 
 .post{
-    margin-top: 20px;
     padding: 15px;
     background-color: lightgray;
     font-family: 'retrofont';
