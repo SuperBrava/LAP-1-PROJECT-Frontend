@@ -26,6 +26,12 @@
     padding-top: 20px;
 }
 
+.card-text1{
+    font-size: 14pt;
+    text-align: center;
+    padding-top: 15px;
+}
+
 .buttonlist{
     padding-top: 340px;
     margin-left: 35px;
@@ -113,10 +119,10 @@ h6{
 
 .textareadiv{
 display: flex;
-justify-content: center;
 text-align: center;
 align-items: center;
 width: 1000px;
+
 }
 
 /*This is not working still working on it, because I've put a placeholder
@@ -133,8 +139,6 @@ for now for max char but perhaps a fixed one would look better
 
 
 textarea{
-    display: flex;
-    justify-content:center;
     border: none;
     font-family: 'retrofont';
     overflow: hidden; 
