@@ -82,6 +82,13 @@ h4{
     margin-left:75px;
 }
 
+<<<<<<< HEAD:style.css
+=======
+.textareadiv{
+    position: relative;
+   
+}
+>>>>>>> 0827f45196e2c5366cdb28c6fcbe015110a6e197:css/style.css
 
 /*This is not working still working on it, because I've put a placeholder
 for now for max char but perhaps a fixed one would look better 
@@ -110,11 +117,12 @@ textarea{
 
 @font-face {
     font-family: 'retrofont';
-    src: url('./assets/retrofont.ttf');
+    src: url('../assets/retrofont.ttf');
 }
 
 body{
     background-color: #e6f3fb;
+    font-family: 'retrofont';
 }
 
 
@@ -135,6 +143,7 @@ body{
 }
 
 .post{
+    margin-top: 20px;
     padding: 15px;
     background-color: lightgray;
     font-family: 'retrofont';
