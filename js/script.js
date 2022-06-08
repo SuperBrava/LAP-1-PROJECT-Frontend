@@ -6,17 +6,11 @@ $(document).ready(function() {
     });
 })
 
-let APIKEY = "KjhTKrHYVKk4fs2vueEKEy2poFC5QzPy";
-
 document.addEventListener("loadthecontent", init);
 function init() {
     document.getElementById("btnSearch").addEventListener("click", ev =>{
         ev.preventDefault();
-        let url= `https://api.giphy.com/v1/gifs/trending?api_key=${apikey}&limit=5`;
-        let str= document.getElementById("search").value.trim();
-        url = url.concat(str);
-        console.log(url);
-        fetch(url)
+        fetch('https://portfolio-project-1-backend.herokuapp.com/gif')
         .then(response => response.json())
         .then(content => {
             console.log(content.data);
@@ -56,7 +50,7 @@ function postInstance(){
 
     const postText = document.createElement('p');
     postText.className = "card-text";
-    postText.innerText = "A programmer is sent to the grocery store with instructions to "Buy butter and see whether they have eggs, if they do, then buy 10. Returning with 10 butters, the programmer says, "They had eggs.";
+    postText.innerText = "A programmer is sent to the grocery store with instructions to 'Buy butter and see whether they have eggs, if they do, then buy 10. Returning with 10 butters, the programmer says, 'They had eggs.";
     postContainer.append(postText);
 
     const upVote = document.createElement('img');

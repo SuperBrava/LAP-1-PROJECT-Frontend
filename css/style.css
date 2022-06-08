@@ -202,3 +202,10 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+
+#postbartitle{
+    width: 50vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
