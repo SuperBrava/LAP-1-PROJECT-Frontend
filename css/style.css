@@ -210,7 +210,10 @@ body{
     margin-right: auto;
 }
 
-span{
+.span1{
     display: block;
     min-height: xxx px;
+    background-color: white;
+    height: 200px;
+    width: 1065px;
 }
