@@ -121,6 +121,11 @@ h6{
     background-color: white;
 }
 
+.replyArea{
+    width:950px;
+    height:100px;
+}
+
 /* .textareadiv{
 display: flex;
 text-align: center;
