@@ -42,17 +42,6 @@ function init() {
 //just working on the gify api 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function postInstance(){
     const postContainer = document.createElement('div');
     postContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10 post"
