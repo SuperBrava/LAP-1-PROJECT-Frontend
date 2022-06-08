@@ -74,7 +74,11 @@ function init() {
 }
 //just working on the gify api 
 
+<<<<<<< HEAD
 
+=======
+// creates a html elements and populates innertext with post data
+>>>>>>> 55d10522c3a3a03e2aa37ca0c48c3b44383b2d03
 function postInstance(post){
     const postContainer = document.createElement('div');
     postContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10 post"
@@ -138,5 +142,29 @@ function postInstance(post){
     //append post instance to queried selection
     document.querySelector('#postResults').append(postContainer);
 }
+<<<<<<< HEAD
+=======
+
+
+// JSON integration to FE
+// fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/programming')
+//     .then(r => r.json())
+//     .then(r => {
+//         r.data.forEach(element => postInstance(element));
+//     })
+//     .catch(console.warn);
+
+// document.querySelector("postInstance")
+
+
+>>>>>>> 55d10522c3a3a03e2aa37ca0c48c3b44383b2d03
 //for this function I need to add a pop up for the text area reply box too 
 //add also one for the new h2 
+
+// const fs = require('fs');
+
+// fs.readFile('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/get/readPost', 'utf-8', (err, jsonString) => {
+    
+//         console.log(jsonString);
+    
+// });

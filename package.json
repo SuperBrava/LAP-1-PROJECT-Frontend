@@ -1,0 +1,24 @@
+{
+  "name": "lap-1-project-frontend",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon js/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuperBrava/LAP-1-PROJECT-Frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SuperBrava/LAP-1-PROJECT-Frontend/issues"
+  },
+  "homepage": "https://github.com/SuperBrava/LAP-1-PROJECT-Frontend#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}

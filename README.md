@@ -2,7 +2,7 @@
 
 ## Description
 
-Create a community platform to display journal entries from other users - utilising front/backend to store json data - deployed to netlify herouku
+Create a community platform (retro-technology) to display journal entries from other users - utilising front/backend to store json data - deployed to netlify +  herouku
 
 ## Requirements
 Your website should have the following functionality for users:

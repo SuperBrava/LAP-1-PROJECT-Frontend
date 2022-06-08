@@ -64,7 +64,11 @@
 
         <h6>Popular posts today</h6>
 
-        <div class="m-auto mt-5 col-lg-7 col-md-8 col-sm-10">
+        <section id="postResults">
+
+        </section>
+
+        <!-- <div class="m-auto mt-5 col-lg-7 col-md-8 col-sm-10">
         <div class="post">
             <h4>Windoge XP</h4>
             <h2>A joke I wrote</h2>
@@ -101,13 +105,23 @@
            <textarea id="postbar1" name="postbar" maxlength="250" rows="4" cols="50" placeholder="Enlighten us using 250 characters"></textarea>
            <input type="submit" class="btn" name="submit" value="Reply">
         </div>
-      </div>
+      </div> -->
 
 
 <!--We need to have an extra box pop up similar to the previous posts and displays the new content-->
 
+<!-- JSON Fetch Posts -->
+<script>
+  fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/programming')
+      .then(r => r.json())
+      .then(r => {
+          r.data.forEach(element => postInstance(element));
+      })
+      .catch(console.warn);
+</script>
 
-     <!-- Jquery Script-->
+
+<!-- Jquery Script-->
      <script
      src="https://code.jquery.com/jquery-3.6.0.min.js"
      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
