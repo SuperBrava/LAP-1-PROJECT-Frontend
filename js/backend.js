@@ -6,3 +6,4 @@
     .then(r => console.log(r))
     .catch(console.warn);
 
+console.log()

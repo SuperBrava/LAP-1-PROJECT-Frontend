@@ -1,13 +1,21 @@
+
 .btn{
-    background-color: rgba(243, 237, 237, 0.753);
+    background-color: rgba(224, 211, 211, 0.753);
     font-family: 'retrofont';
+    margin: 10px;
+    font-size: 10pt;
+    display:flex;
+    width: fit-content;
     align-self: flex-end;
+    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753);
+    box-shadow: 2px 2px 0px 0px rgba(80, 78, 78, 0.753);
+    
 }
 
-.postbtn{
-    border: none;
-    display: flex;
-    
+
+
+.btn:hover{
+    background-color:#233db1;
 }
 
 /*need to align the buttons*/
@@ -15,18 +23,53 @@
 .card-title, .card-text{
     text-align: center;
     font-family: 'retrofont';
-    font-size: 10pt;
     padding-top: 20px;
+}
 
+.card-text1{
+    font-size: 14pt;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.buttonlist{
+    padding-top: 340px;
+    margin-left: 35px;
+}
+
+.card-icon2{
+    object-fit: cover;
+    height: 15px;
+}
+
+.btnlist{
+    display: flex;
+    flex: row;
+    list-style: none;
 }
 
 .card-icon{
-    width: 50px;
+    width: 70px;
     padding: 5px;
+    margin-left: 35px;
 }
 
+
+
+.card-icon3{
+    object-fit: cover;
+    height: 80px;
+}
+
+.card-icon4{
+    transform: rotate(180deg);
+    object-fit: cover;
+    height: 80px;
+}
+
+
 .container{
-    padding-top: 150px;
+    padding-top: 80px;
 }
 
 .container2{
@@ -43,24 +86,44 @@ h1{
 h2{
     font-size: 14pt;
     font-family: 'retrofont';
-    margin-left: 150px;
+    text-align: center;
+}
+
+h4{
+    font-size: 8pt;
+    color: white;
+    background-color: #233db1;
+    padding-left: 7px;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 2px 2px 2px 2px rgba(224, 211, 211, 0.753),
+     1px 1px 0px 0px rgba(80, 78, 78, 0.753);
+}
+
+h6{
+    text-align: center;
+    padding-top: 40px;
 }
 
 .card{
-    background-color: lightgray;
+    background-color: rgb(196, 189, 189);
     font-family: 'retrofont';
-    font-size: 8pt;
-    
+    box-shadow: 4px 4px 4px 4px rgba(224, 211, 211, 0.753),
+    2px 2px 0px 0px rgba(80, 78, 78, 0.753);
 }
+
 
 #postbar{
     margin-left:75px;
 }
 
-.textareadiv{
-    position: relative;
-   
-}
+/* .textareadiv{
+display: flex;
+text-align: center;
+align-items: center;
+width: 1000px;
+
+} */
 
 /*This is not working still working on it, because I've put a placeholder
 for now for max char but perhaps a fixed one would look better 
@@ -74,17 +137,14 @@ for now for max char but perhaps a fixed one would look better
     }
 */ 
 
+
 textarea{
     border: none;
-    height: 300px;
-    width: 400px;
-   font-family: 'retrofont';
-   padding: 0.4;
-   padding-bottom: 250px;
-   overflow: hidden;
-   display: inline-block;
-   float: left;
+    font-family: 'retrofont';
+    overflow: hidden; 
 }
+
+
 
 @font-face {
     font-family: 'retrofont';
@@ -99,8 +159,11 @@ body{
 
 .navbar {
     font-family:'retrofont', Courier, monospace;
-    background-color: #b2cee0;
+    background-color: #233db1;
     height: 50px;
+    box-shadow: 3px 3px 3px 3px rgba(224, 211, 211, 0.753),
+    2px 2px 0px 0px rgba(80, 78, 78, 0.753);
+
 }
 
 .nav-item > a:hover {
@@ -116,13 +179,26 @@ body{
 .post{
     margin-top: 20px;
     padding: 15px;
-    background-color: lightgray;
+    background-color: rgb(196, 189, 189);
     font-family: 'retrofont';
     font-size: 8pt;
+    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753),
+    2px 2px 0px 0px rgba(80, 78, 78, 0.753);
 }
+    
+
 .post .btn{
     background-color: rgba(243, 237, 237, 0.753);
     font-family: 'retrofont';
     display: flex;
     flex-direction: row-reverse;
+    box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753),
+    2px 2px 0px 0px rgba(80, 78, 78, 0.753);
+}
+
+#createPost{
+    width: 50vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
