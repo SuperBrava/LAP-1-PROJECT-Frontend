@@ -6,42 +6,79 @@ $(document).ready(function() {
     });
 })
 
+/*
+
+i've commented this out because it's wrong 
+
+const form = document.querySelector('.gifform');
+const searchbtn = document.queryCommandValue('.searchbtn');
+const gobtn = document.querySelector('.btnSearch');
+const search1 = document.querySelector('.search1')
+
+form.addEventListener('submit', (e) =>{
+    e.preventDefault();
+    const btnSearch = e.target.btn.value; //one for the search button
+    const search1 = e.target.searchlabel.value; //so we have one for the searchbar LABEL
+    const gifform = e.target.gifform.value; //one for the entire form 
+    const searchbtn = e.target.searchbar1.value;
+    form.classList.add('hide');
+
+   
+})
+*/
+/*
+
+//working on this in the programming html trying to hide the form search bar and when you click on the button the form shows up 
+document.addEventListener("searchbar loaded" , searchbar);
+function searchbar(){
+document.getElementById("gif").addEventListener("click", e =>{
+    e.preventDefault();
+    let input = document.createElement("input");
+    search.append(search);
+})
+}
+*/
+
 let APIKEY = "KjhTKrHYVKk4fs2vueEKEy2poFC5QzPy";
 
-document.addEventListener("loadthecontent", init);
+document.addEventListener("DOMContentLoaded", init);
 function init() {
-    document.getElementById("btnSearch").addEventListener("click", ev =>{
-        ev.preventDefault();
-        let url= `https://api.giphy.com/v1/gifs/trending?api_key=${apikey}&limit=5`;
-        let str= document.getElementById("search").value.trim();
-        url = url.concat(str);
-        console.log(url);
-        fetch(url)
-        .then(response => response.json())
-        .then(content => {
-            console.log(content.data);
-            console.log("META", content.meta);
-            let fig = document.createElement('figure');
-            let img = document.createElement('img');
-            let fc = document.createElement('figcaption');
-            img.src = content.data[0].images.downsized.url;
-            img.alt = content.data[0].title;
-            fc.textContent = content.data[0].title;
-            fig.appendChild(img);
-            fig.appendChild(fc);
-            let out = document.querySelector('.out');
-            out.insertAdjacentElement('afterbegin', fig);
-
-        })
-            .catch(err => {
-                console.error(err);
-     })                               
-    });
+  document.getElementById("btnSearch").addEventListener("click", ev => {
+    ev.preventDefault(); //to stop the page reload
+    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=1&q=`;
+    let str = document.getElementById("search").value.trim();
+    url = url.concat(str);
+    console.log(url);
+    fetch(url)
+      .then(response => response.json())
+      .then(content => {
+        //  data, pagination, meta
+        console.log(content.data);
+        console.log("META", content.meta);
+        let fig = document.createElement("figure");
+        let img = document.createElement("img");
+        img.src = content.data[0].images.downsized.url;
+        img.alt = content.data[0].title;
+        fig.appendChild(img);
+        //add to textarea.textContent -- innerhtml
+        //let textareacon = document.getElementById("postbar");
+        //textareacon.textContent = (img);
+        let out = document.querySelector(".out");
+        out.insertAdjacentElement("afterbegin", fig);
+        document.querySelector("#search").value = "";
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  });
 }
-
 //just working on the gify api 
 
+<<<<<<< HEAD
+
+=======
 // creates a html elements and populates innertext with post data
+>>>>>>> 55d10522c3a3a03e2aa37ca0c48c3b44383b2d03
 function postInstance(post){
     const postContainer = document.createElement('div');
     postContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10 post"
@@ -105,6 +142,8 @@ function postInstance(post){
     //append post instance to queried selection
     document.querySelector('#postResults').append(postContainer);
 }
+<<<<<<< HEAD
+=======
 
 
 // JSON integration to FE
@@ -118,6 +157,7 @@ function postInstance(post){
 // document.querySelector("postInstance")
 
 
+>>>>>>> 55d10522c3a3a03e2aa37ca0c48c3b44383b2d03
 //for this function I need to add a pop up for the text area reply box too 
 //add also one for the new h2 
 
