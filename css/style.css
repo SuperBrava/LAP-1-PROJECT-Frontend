@@ -138,6 +138,10 @@ for now for max char but perhaps a fixed one would look better
 */ 
 
 
+.postbar1{
+   
+}
+
 textarea{
     border: none;
     font-family: 'retrofont';
