@@ -209,3 +209,8 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+
+span{
+    display: block;
+    min-height: xxx px;
+}
