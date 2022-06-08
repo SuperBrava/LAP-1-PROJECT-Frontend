@@ -117,13 +117,13 @@ h6{
     margin-left:75px;
 }
 
-.textareadiv{
+/* .textareadiv{
 display: flex;
 text-align: center;
 align-items: center;
 width: 1000px;
 
-}
+} */
 
 /*This is not working still working on it, because I've put a placeholder
 for now for max char but perhaps a fixed one would look better 
@@ -137,10 +137,6 @@ for now for max char but perhaps a fixed one would look better
     }
 */ 
 
-
-.postbar1{
-   
-}
 
 textarea{
     border: none;
@@ -198,4 +194,11 @@ body{
     flex-direction: row-reverse;
     box-shadow: 5px 5px 5px 5px rgba(224, 211, 211, 0.753),
     2px 2px 0px 0px rgba(80, 78, 78, 0.753);
+}
+
+#createPost{
+    width: 50vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
