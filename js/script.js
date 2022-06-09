@@ -35,8 +35,11 @@ searchButton.addEventListener('click', (e) => {
     const keywordElement = document.querySelector("#searchKeyword");
     let searchKeyword = keywordElement.value;
     let destination;
+    let currentUrl = window.location.href;
+    console.log(currentUrl);
+    let tokens = currentUrl.split('?');
     if (!curPage.includes('index.html')) {
-        destination = window.location+'&keyword='+searchKeyword;
+        destination = tokens[0]+'?keyword='+searchKeyword;
         window.location.href = destination;
         e.preventDefault();
     } else {
@@ -47,14 +50,15 @@ searchButton.addEventListener('click', (e) => {
 });
 
 
-
 const curPage = window.location.pathname;
 if (!curPage.includes('index.html')) {
     if (keyword !== "") {
         document.querySelector("#category").innerHTML = 'Search Result: <br>' + capitalizeFirstLetter(keyword);
+        document.title = 'Windoge XP - ' + capitalizeFirstLetter(keyword);
         submitSearch(keyword);
     } else {
         document.querySelector("#category").innerHTML = capitalizeFirstLetter(category);
+        document.title = 'Windoge XP - ' + capitalizeFirstLetter(category);
         fetchLoading(category);
     }
 
@@ -288,7 +292,7 @@ function appendComments(comment){
 
 // JSON integration to FE
 function fetchLoading () {
-    fetch(`https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/${category}`)
+    fetch(`http://localhost:5000/post/topic/${category}`)
         .then(r => r.json())
         .then(r => {
             r.data.forEach(element => postInstance(element));
@@ -308,7 +312,7 @@ async function callPost() {
         postBody: document.querySelector("#postbar").textContent
     };
     console.log(data)
-    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/post/',  {
+    fetch('http://localhost:5000/post/post/',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -331,7 +335,7 @@ async function addComment(comment, id) {
         comment: comment,
         postId: id
     };
-    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/comment',  {
+    fetch('http://localhost:5000/post/comment',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -356,7 +360,7 @@ async function submitReaction(reactionType, postId) {
             topic: category, 
             reactionType: reactionType
     };
-    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/reaction',  {
+    fetch('http://localhost:5000/post/reaction',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -387,7 +391,7 @@ function submitSearch(searchKeyword) {
 
 // const fs = require('fs');
 
-// fs.readFile('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/get/readPost', 'utf-8', (err, jsonString) => {
+// fs.readFile('http://localhost:5000/get/readPost', 'utf-8', (err, jsonString) => {
     
 //         console.log(jsonString);
     
