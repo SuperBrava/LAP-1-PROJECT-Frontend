@@ -8,10 +8,104 @@ $(document).ready(function() {
 })
 */
 
+let category = "programming";
+let keyword = "";
+
+const queryString = window.location.search;
+const urlToken = queryString.split('?');
+if (urlToken.length == 2) {
+    let parameter = urlToken[1];
+    let tokens = parameter.split('&');
+    tokens.forEach((curToken) => {
+        let pairs = curToken.split('=');
+        let name = pairs[0];
+        let val = pairs[1];
+        if (name === 'topic') {
+            category = val.toLocaleLowerCase();
+        }
+        if (name === 'keyword') {
+            keyword = val.toLocaleLowerCase();
+        }
+    });
+}
+
+const searchButton = document.querySelector("#search-button");
+searchButton.addEventListener('click', (e) => {
+    console.log("clicked");
+    const keywordElement = document.querySelector("#searchKeyword");
+    let searchKeyword = keywordElement.value;
+    let destination;
+    if (!curPage.includes('index.html')) {
+        destination = window.location+'&keyword='+searchKeyword;
+        window.location.href = destination;
+        e.preventDefault();
+    } else {
+        destination = 'topic.html?keyword='+searchKeyword;
+        window.location.href = destination;
+        e.preventDefault();
+    }
+});
 
 
 
-document.getElementById("hidediv").style.display = "none";
+const curPage = window.location.pathname;
+if (!curPage.includes('index.html')) {
+    if (keyword !== "") {
+        document.querySelector("#category").innerHTML = 'Search Result: <br>' + capitalizeFirstLetter(keyword);
+        submitSearch(keyword);
+    } else {
+        document.querySelector("#category").innerHTML = capitalizeFirstLetter(category);
+        fetchLoading(category);
+    }
+
+    document.getElementById("hidediv").style.display = "none";
+    let newPost = document.querySelector("#postbartitle").innerText;
+    console.log(newPost);
+
+    let submitPost = document.querySelector("#submitPost").addEventListener("click", (e) => {
+        e.preventDefault();
+        callPost();
+        fetchLoading()
+    });
+
+    let APIKEY = "KjhTKrHYVKk4fs2vueEKEy2poFC5QzPy";
+
+    document.addEventListener("DOMContentLoaded", init);
+    function init() {
+    document.getElementById("btnSearch").addEventListener("click", ev => {
+        ev.preventDefault(); //to stop the page reload
+        let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=1&q=`;
+        let str = document.getElementById("search").value.trim();
+        url = url.concat(str);
+        console.log(url);
+        fetch(url)
+        .then(response => response.json())
+        .then(content => {
+            //  data, pagination, meta
+            console.log(content.data);
+            console.log("META", content.meta);
+            let fig = document.createElement("figure");
+            let img = document.createElement("img");
+            img.src = content.data[0].images.downsized.url;
+            img.alt = content.data[0].title;
+            fig.appendChild(img);
+            //add to textarea.textContent -- innerhtml
+            //let textareacon = document.getElementById("postbar");
+            //textareacon.textContent = (img);
+            let out = document.querySelector(".out");
+            out.insertAdjacentElement("afterbegin", fig);
+            document.querySelector("#search").value = "";
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    });
+    }
+}
+
+
+
+
 
 function hideSearch(){
     const x = 
@@ -59,45 +153,9 @@ document.getElementById("gif").addEventListener("click", e =>{
 }
 */
 
-let APIKEY = "KjhTKrHYVKk4fs2vueEKEy2poFC5QzPy";
-
-document.addEventListener("DOMContentLoaded", init);
-function init() {
-  document.getElementById("btnSearch").addEventListener("click", ev => {
-    ev.preventDefault(); //to stop the page reload
-    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=1&q=`;
-    let str = document.getElementById("search").value.trim();
-    url = url.concat(str);
-    console.log(url);
-    fetch(url)
-      .then(response => response.json())
-      .then(content => {
-        //  data, pagination, meta
-        console.log(content.data);
-        console.log("META", content.meta);
-        let fig = document.createElement("figure");
-        let img = document.createElement("img");
-        img.src = content.data[0].images.downsized.url;
-        img.alt = content.data[0].title;
-        fig.appendChild(img);
-        //add to textarea.textContent -- innerhtml
-        //let textareacon = document.getElementById("postbar");
-        //textareacon.textContent = (img);
-        let out = document.querySelector(".out");
-        out.insertAdjacentElement("afterbegin", fig);
-        document.querySelector("#search").value = "";
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
-
-  let searchForm = document.querySelector("#search-form");
-  searchForm.addEventListener('submit', (e) => {
-      let keyword = e.target.searchKeyword.value;
-      submitSearch(keyword);
-  });
-}
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
 // module.exports = init;
 //just working on the gify api 
@@ -228,12 +286,9 @@ function appendComments(comment){
     return commentContainer;
 }
 
-let category = document.querySelector("#category").innerHTML.toLowerCase();
-console.log(category);
-
 // JSON integration to FE
 function fetchLoading () {
-    fetch(`https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/get/posts/${category}`)
+    fetch(`https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/${category}`)
         .then(r => r.json())
         .then(r => {
             r.data.forEach(element => postInstance(element));
@@ -243,9 +298,7 @@ function fetchLoading () {
 
 // JSON POST Data
 
-let newPost = document.querySelector("#postbartitle").innerText;
 
-console.log(newPost);
 
 
 async function callPost() {
@@ -319,22 +372,15 @@ async function submitReaction(reactionType, postId) {
         });
 };
 
-function submitSearch(keyword) {
+function submitSearch(searchKeyword) {
     emptyInstance();
-    fetch(`http://localhost:5000/post/topic/search/${keyword}`)
+    fetch(`http://localhost:5000/post/topic/search/${searchKeyword}`)
         .then(r => r.json())
         .then(r => {
             r.forEach(element => postInstance(element));
         })
         .catch(console.warn);
 }
-
-
-let submitPost = document.querySelector("#submitPost").addEventListener("click", (e) => {
-    e.preventDefault();
-    callPost();
-    fetchLoading()
-});
 
 //for this function I need to add a pop up for the text area reply box too 
 //add also one for the new h2 
@@ -347,4 +393,3 @@ let submitPost = document.querySelector("#submitPost").addEventListener("click",
     
 // });
 
-fetchLoading();
