@@ -69,6 +69,12 @@ function postInstance(post){
     downVote.src = "./assets/arrow1.png"
     postContainer.append(downVote);
 
+    //reply
+    const replyArea = document.createElement('TEXTAREA');
+    replyArea.className = "replyArea";
+    replyArea.placeholder = "Comment here";
+    postContainer.append(replyArea);
+
     const replyBtn = document.createElement('a');
     replyBtn.className = 'btn';
     replyBtn.href = '#';
@@ -102,21 +108,73 @@ function postInstance(post){
     reactions.append(react3);
 
     postContainer.append(reactions);
+
+    //comments
+    const commentContainer = document.createElement('span');
+    commentContainer.className = "commentContainer";
+    post['post-comments'].forEach(comment => {
+        commentContainer.append(appendComments(comment));
+    });
+    postContainer.append(commentContainer);
+
+
     //append post instance to queried selection
     document.querySelector('#postResults').append(postContainer);
 }
 
+//Create and append available comments to posts
+function appendComments(comment){
+    const commentContainer = document.createElement('span');
+    const commentText = document.createElement('p');
+    commentText.className = "comment";
+    commentText.innerText = comment["reply-body"];
+    commentContainer.append(commentText);
+    return commentContainer;
+}
+
+let category = document.querySelector("#category").innerHTML.toLowerCase();
+console.log(category);
 
 // JSON integration to FE
-// fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/programming')
-//     .then(r => r.json())
-//     .then(r => {
-//         r.data.forEach(element => postInstance(element));
-//     })
-//     .catch(console.warn);
+function fetchLoading () {
+    fetch(`http://localhost:5000/get/posts/${category}`)
+        .then(r => r.json())
+        .then(r => {
+            r.data.forEach(element => postInstance(element));
+        })
+        .catch(console.warn);
+    };
 
-// document.querySelector("postInstance")
+// JSON POST Data
 
+let newPost = document.querySelector("#postbartitle").innerText;
+
+console.log(newPost);
+
+
+async function callPost() {
+    const data = 
+        { postTopic: category, 
+            postTitle: document.querySelector("#postbartitle").value,  
+        postBody: document.querySelector("#postbar").value
+    };
+    fetch('http://localhost:5000/post/post/',  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+    .catch((error) => {
+        console.error('Error:', error);
+        });
+};
+
+let submitPost = document.querySelector("#submitPost").addEventListener("click", (e) => {
+    e.preventDefault();
+    callPost();
+    fetchLoading()
+});
 
 //for this function I need to add a pop up for the text area reply box too 
 //add also one for the new h2 
@@ -128,3 +186,5 @@ function postInstance(post){
 //         console.log(jsonString);
     
 // });
+
+fetchLoading();

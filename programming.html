@@ -39,7 +39,7 @@
         </div>
       </nav>
 
-      <h1>Programming</h1>
+      <h1 id="category">Programming</h1>
 
       <form id="createPost">
         <h2>Create a post</h2>
@@ -55,7 +55,7 @@
             <h5></h5>
             <textarea id="postbartitle" name="postbar" maxlength="100" rows="2" cols="25" placeholder="Post title" required></textarea>
             <textarea id="postbar" name="postbar" maxlength="250" rows="4" cols="50" placeholder="Enlighten us using 250 characters" required></textarea>
-          <input type="submit" class="btn" name="submit" value="Update my file">
+          <input id="submitPost" type="button" class="btn" name="submit" value="Update my file">
         </div>
       </form>
 
@@ -106,17 +106,6 @@
 
 
 <!--We need to have an extra box pop up similar to the previous posts and displays the new content-->
-
-<!-- JSON Fetch Posts -->
-<script>
-  fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/programming')
-      .then(r => r.json())
-      .then(r => {
-          r.data.forEach(element => postInstance(element));
-      })
-      .catch(console.warn);
-</script>
-
 
 <!-- Jquery Script-->
      <script
