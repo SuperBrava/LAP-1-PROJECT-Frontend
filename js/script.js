@@ -162,21 +162,30 @@ function postInstance(post){
     react1.className = 'btn';
     react1.id = "reaction1";
     react1.href = '#';
-    react1.innerText = "reaction1";
+    react1.innerText = "👍 (" + post['post-reactions']['reaction1'] + ")";
+    react1.addEventListener('click', (e)=>{
+        console.log('Reaction 1 clicked: postId=' + post['post-id']);
+    });
     reactions.append(react1);
 
     const react2 = document.createElement('a');
     react2.className = 'btn';
-    react1.id = "reaction2";
+    react1.id = "reaction2"
     react2.href = '#';
-    react2.innerText = "reaction2";
+    react2.innerText = "👻 (" + post['post-reactions']['reaction2'] + ")";
+    react2.addEventListener('click', (e)=>{
+        console.log('Reaction 2 clicked: postId=' + post['post-id']);
+    });
     reactions.append(react2);
 
     const react3 = document.createElement('a');
     react3.className = 'btn';
     react1.id = "reaction3";
     react3.href = '#';
-    react3.innerText = "reaction3";
+    react3.innerText = "👎 (" + post['post-reactions']['reaction3'] + ")";
+    react3.addEventListener('click', (e)=>{
+        console.log('Reaction 3 clicked: postId=' + post['post-id']);;
+    });
     reactions.append(react3);
 
     postContainer.append(reactions);
