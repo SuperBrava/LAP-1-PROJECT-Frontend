@@ -223,7 +223,7 @@ console.log(category);
 
 // JSON integration to FE
 function fetchLoading () {
-    fetch(`http://localhost:5000/get/posts/${category}`)
+    fetch(`https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/get/posts/${category}`)
         .then(r => r.json())
         .then(r => {
             r.data.forEach(element => postInstance(element));
@@ -245,7 +245,7 @@ async function callPost() {
         postBody: document.querySelector("#postbar").textContent
     };
     console.log(data)
-    fetch('http://localhost:5000/post/post/',  {
+    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/post/',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -264,7 +264,7 @@ async function addComment(comment, id) {
         comment: comment,
         postId: id
     };
-    fetch('http://localhost:5000/post/comment',  {
+    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/comment',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -285,7 +285,7 @@ async function submitReaction(reactionType, postId) {
             topic: category, 
             reactionType: reactionType
     };
-    fetch('http://localhost:5000/post/reaction',  {
+    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/reaction',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
