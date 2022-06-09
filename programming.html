@@ -49,15 +49,16 @@
         <div class="textareadiv">
             <h5></h5>
             <textarea id="postbartitle" name="postbar" maxlength="75" rows="2" cols="25" placeholder="Post title" ></textarea>
-            <div class="out">
-            <textarea id="postbar" name="postbar" maxlength="250" rows="4" cols="50" placeholder="Enlighten us using 250 characters"></textarea>
-          </div>
+              <div onkeypress="return (this.innerText.length <= 250)"contenteditable="true" name="postbar" rows="4" cols="50" class="editdiv"><span class="span1">Enlighten us using 250 characters<div class="out"></div></span></div>
             <form>
+              <div id ="hidediv">
               <label for="search" placeholder="Search for a gif">Search</label>
               <input type="search" id="search"/>
               <button id="btnSearch">Go</button>
+            </div>
             </form>
-            <input type="submit" class="btn" id="gif" name="search" value="Add a gif">
+            <!--done it the wrong way around fixing it now -->
+            <input type="submit" class="btn" id="gif" name="search" value="Add a gif" onclick="hideSearch()">
           <input type="submit" class="btn" name="submit" value="Update my file">
         </div>
       </form>
@@ -67,6 +68,8 @@
         <section id="postResults">
 
         </section>
+
+        
 
         <!-- <div class="m-auto mt-5 col-lg-7 col-md-8 col-sm-10">
         <div class="post">

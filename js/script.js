@@ -1,10 +1,30 @@
 // emoji script
 
+/*
 $(document).ready(function() {
     $("#postbar").emojioneArea({
         pickerPosition: "bottom"
     });
 })
+*/
+/*
+
+this is to hide the search bar still need to fix it 
+
+document.getElementById("hidediv").style.display = "none";
+
+function hideSearch(){
+    const x = 
+    document.getElementById("hidediv");
+    if(x.style.display === "none")
+{
+    x.style.display = "block";
+}else{
+    x.style.display = "none";
+}
+}
+*/
+
 
 /*
 
@@ -72,13 +92,11 @@ function init() {
       });
   });
 }
+
+module.exports = init;
 //just working on the gify api 
 
-<<<<<<< HEAD
-
-=======
 // creates a html elements and populates innertext with post data
->>>>>>> 55d10522c3a3a03e2aa37ca0c48c3b44383b2d03
 function postInstance(post){
     const postContainer = document.createElement('div');
     postContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10 post"
@@ -105,6 +123,12 @@ function postInstance(post){
     downVote.className = 'card-icon4'
     downVote.src = "./assets/arrow1.png"
     postContainer.append(downVote);
+
+    //reply
+    const replyArea = document.createElement('TEXTAREA');
+    replyArea.className = "replyArea";
+    replyArea.placeholder = "Comment here";
+    postContainer.append(replyArea);
 
     const replyBtn = document.createElement('a');
     replyBtn.className = 'btn';
@@ -139,12 +163,31 @@ function postInstance(post){
     reactions.append(react3);
 
     postContainer.append(reactions);
+
+    //comments
+    const commentContainer = document.createElement('span');
+    commentContainer.className = "commentContainer";
+    post['post-comments'].forEach(comment => {
+        commentContainer.append(appendComments(comment));
+    });
+    postContainer.append(commentContainer);
+
+
     //append post instance to queried selection
     document.querySelector('#postResults').append(postContainer);
 }
-<<<<<<< HEAD
-=======
 
+module.exports = postInstance;
+
+//Create and append available comments to posts
+function appendComments(comment){
+    const commentContainer = document.createElement('span');
+    const commentText = document.createElement('p');
+    commentText.className = "comment";
+    commentText.innerText = comment["reply-body"];
+    commentContainer.append(commentText);
+    return commentContainer;
+}
 
 // JSON integration to FE
 // fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/programming')
@@ -157,7 +200,6 @@ function postInstance(post){
 // document.querySelector("postInstance")
 
 
->>>>>>> 55d10522c3a3a03e2aa37ca0c48c3b44383b2d03
 //for this function I need to add a pop up for the text area reply box too 
 //add also one for the new h2 
 
