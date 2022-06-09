@@ -24,6 +24,7 @@ if (urlToken.length == 2) {
             category = val.toLocaleLowerCase();
         }
         if (name === 'keyword') {
+            category = val.toLocaleLowerCase();
             keyword = val.toLocaleLowerCase();
         }
     });
@@ -35,26 +36,30 @@ searchButton.addEventListener('click', (e) => {
     const keywordElement = document.querySelector("#searchKeyword");
     let searchKeyword = keywordElement.value;
     let destination;
-    if (!curPage.includes('index.html')) {
-        destination = window.location+'&keyword='+searchKeyword;
+    let currentUrl = window.location.href;
+    console.log(currentUrl);
+    let tokens = currentUrl.split('?');
+    if (curPage.includes('topic.html')) {
+        destination = tokens[0]+'?keyword='+searchKeyword;
         window.location.href = destination;
-        e.preventDefault();
-    } else {
+        //e.preventDefault();
+    } else if (curPage.includes('index.html')) {
         destination = 'topic.html?keyword='+searchKeyword;
         window.location.href = destination;
-        e.preventDefault();
+        //e.preventDefault();
     }
 });
-
 
 
 const curPage = window.location.pathname;
 if (!curPage.includes('index.html')) {
     if (keyword !== "") {
         document.querySelector("#category").innerHTML = 'Search Result: <br>' + capitalizeFirstLetter(keyword);
+        document.title = 'Windoge XP - ' + capitalizeFirstLetter(keyword);
         submitSearch(keyword);
     } else {
         document.querySelector("#category").innerHTML = capitalizeFirstLetter(category);
+        document.title = 'Windoge XP - ' + capitalizeFirstLetter(category);
         fetchLoading(category);
     }
 
@@ -103,8 +108,15 @@ if (!curPage.includes('index.html')) {
     }
 }
 
+if (curPage.includes('menu.html')) {
 
-
+    fetch(`http://localhost:5000/post/topic/all`)
+        .then(r => r.json())
+        .then(r => {
+            r.data.forEach(element => postInstance(element));
+        })
+        .catch(console.warn);
+}
 
 
 function hideSearch(){
@@ -214,10 +226,10 @@ function postInstance(post){
 
     replyBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const postID = parseInt(postContainer.dataset.postid);
+        const postId = parseInt(post['post-id']);
+        const postTopic = post['post-topic'];
         const comment = replyArea.value;
-
-        addComment(comment, postID);
+        addComment(postId, postTopic, comment);
     })
 
 
@@ -232,8 +244,7 @@ function postInstance(post){
     react1.href = '#';
     react1.innerText = "👍 (" + post['post-reactions']['reaction1'] + ")";
     react1.addEventListener('click', (e)=>{
-        //console.log('Reaction 1 clicked: postId=' + post['post-id']);
-        submitReaction('reaction1', post['post-id']);
+        submitReaction('reaction1', post['post-topic'], post['post-id']);
     });
     reactions.append(react1);
 
@@ -243,8 +254,7 @@ function postInstance(post){
     react2.href = '#';
     react2.innerText = "👻 (" + post['post-reactions']['reaction2'] + ")";
     react2.addEventListener('click', (e)=>{
-        //console.log('Reaction 2 clicked: postId=' + post['post-id']);
-        submitReaction('reaction2', post['post-id']);
+        submitReaction('reaction2', post['post-topic'], post['post-id']);
     });
     reactions.append(react2);
 
@@ -254,8 +264,7 @@ function postInstance(post){
     react3.href = '#';
     react3.innerText = "👎 (" + post['post-reactions']['reaction3'] + ")";
     react3.addEventListener('click', (e)=>{
-        //console.log('Reaction 3 clicked: postId=' + post['post-id']);
-        submitReaction('reaction3', post['post-id']);
+        submitReaction('reaction3', post['post-topic'], post['post-id']);
     });
     reactions.append(react3);
 
@@ -288,7 +297,7 @@ function appendComments(comment){
 
 // JSON integration to FE
 function fetchLoading () {
-    fetch(`https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/${category}`)
+    fetch(`http://localhost:5000/post/topic/${category}`)
         .then(r => r.json())
         .then(r => {
             r.data.forEach(element => postInstance(element));
@@ -297,10 +306,6 @@ function fetchLoading () {
     };
 
 // JSON POST Data
-
-
-
-
 async function callPost() {
     const data = 
         { postTopic: category, 
@@ -308,7 +313,7 @@ async function callPost() {
         postBody: document.querySelector("#postbar").textContent
     };
     console.log(data)
-    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/post/',  {
+    fetch('http://localhost:5000/post/post/',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -325,13 +330,14 @@ async function callPost() {
         
 };
 
-async function addComment(comment, id) {
+async function addComment(postId, postTopic, comment) {
     const data = 
-        { topic: category, 
-        comment: comment,
-        postId: id
+        { 
+            postId: postId,
+            topic: postTopic, 
+            comment: comment
     };
-    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/comment',  {
+    fetch('http://localhost:5000/post/comment',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -348,15 +354,15 @@ async function addComment(comment, id) {
         location.reload();
 };
 
-async function submitReaction(reactionType, postId) {
+async function submitReaction(reactionType, topic, postId) {
     const data = 
         { 
             postId: postId,
             replyId: null,
-            topic: category, 
+            topic: topic, 
             reactionType: reactionType
     };
-    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/reaction',  {
+    fetch('http://localhost:5000/post/reaction',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -387,7 +393,7 @@ function submitSearch(searchKeyword) {
 
 // const fs = require('fs');
 
-// fs.readFile('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/get/readPost', 'utf-8', (err, jsonString) => {
+// fs.readFile('http://localhost:5000/get/readPost', 'utf-8', (err, jsonString) => {
     
 //         console.log(jsonString);
     
