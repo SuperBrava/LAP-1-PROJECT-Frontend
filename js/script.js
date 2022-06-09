@@ -24,6 +24,7 @@ if (urlToken.length == 2) {
             category = val.toLocaleLowerCase();
         }
         if (name === 'keyword') {
+            category = val.toLocaleLowerCase();
             keyword = val.toLocaleLowerCase();
         }
     });
@@ -41,11 +42,11 @@ searchButton.addEventListener('click', (e) => {
     if (!curPage.includes('index.html')) {
         destination = tokens[0]+'?keyword='+searchKeyword;
         window.location.href = destination;
-        e.preventDefault();
+        //e.preventDefault();
     } else {
         destination = 'topic.html?keyword='+searchKeyword;
         window.location.href = destination;
-        e.preventDefault();
+        //e.preventDefault();
     }
 });
 
