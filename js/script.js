@@ -91,10 +91,20 @@ function init() {
         console.error(err);
       });
   });
+
+  let searchForm = document.querySelector("#search-form");
+  searchForm.addEventListener('submit', (e) => {
+      let keyword = e.target.searchKeyword.value;
+      submitSearch(keyword);
+  });
 }
 
 // module.exports = init;
 //just working on the gify api 
+
+function emptyInstance() {
+    document.querySelector('#postResults').innerHTML = "";
+}
 
 // creates a html elements and populates innertext with post data
 function postInstance(post){
@@ -252,6 +262,10 @@ async function callPost() {
         },
         body: JSON.stringify(data),
         })
+    .then(() => {
+        //emptyInstance();
+        //fetchLoading();
+    })
     .catch((error) => {
         console.error('Error:', error);
         });
@@ -271,6 +285,10 @@ async function addComment(comment, id) {
         },
         body: JSON.stringify(data),
         })
+    .then(() => {
+        //emptyInstance();
+        //fetchLoading();
+    })
     .catch((error) => {
         console.error('Error:', error);
         });
@@ -292,11 +310,24 @@ async function submitReaction(reactionType, postId) {
         },
         body: JSON.stringify(data),
         })
+    .then(() => {
+        //emptyInstance();
+        //fetchLoading();
+    })
     .catch((error) => {
         console.error('Error:', error);
         });
-        location.reload();
 };
+
+function submitSearch(keyword) {
+    emptyInstance();
+    fetch(`http://localhost:5000/post/topic/search/${keyword}`)
+        .then(r => r.json())
+        .then(r => {
+            r.forEach(element => postInstance(element));
+        })
+        .catch(console.warn);
+}
 
 
 let submitPost = document.querySelector("#submitPost").addEventListener("click", (e) => {
