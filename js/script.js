@@ -1,11 +1,12 @@
 // emoji script
 
+/*
 $(document).ready(function() {
     $("#postbar").emojioneArea({
         pickerPosition: "bottom"
     });
 })
-
+*/
 /*
 
 this is to hide the search bar still need to fix it 
@@ -91,6 +92,8 @@ function init() {
       });
   });
 }
+
+module.exports = init;
 //just working on the gify api 
 
 // creates a html elements and populates innertext with post data
@@ -173,6 +176,8 @@ function postInstance(post){
     //append post instance to queried selection
     document.querySelector('#postResults').append(postContainer);
 }
+
+module.exports = postInstance;
 
 //Create and append available comments to posts
 function appendComments(comment){
