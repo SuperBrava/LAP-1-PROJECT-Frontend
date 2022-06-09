@@ -210,7 +210,7 @@ function appendComments(comment){
     const commentContainer = document.createElement('span');
     const commentText = document.createElement('p');
     commentText.className = "comment";
-    commentText.innerText = comment["reply-body"];
+    commentText.innerText = "> " + comment["reply-body"];
     commentContainer.append(commentText);
     return commentContainer;
 }
