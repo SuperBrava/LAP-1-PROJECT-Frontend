@@ -8,8 +8,8 @@ $(document).ready(function() {
 })
 */
 
-//const hostAndPort = 'https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com'; // This is for production
-const hostAndPort = 'http://localhost:5000'; // This is for local testing
+const hostAndPort = 'https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com'; // This is for production
+//const hostAndPort = 'http://localhost:5000'; // This is for local testing
 
 let category = "programming";
 let keyword = "";
