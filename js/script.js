@@ -236,7 +236,7 @@ function postInstance(post){
     const replyBtn = document.createElement('a');
     replyBtn.className = 'btn';
     replyBtn.href = 'javascript:void(0);';
-    replyBtn.innerText = "ENTER";
+    replyBtn.innerText = "Enter";
     postContainer.append(replyBtn);
 
     replyBtn.addEventListener('click', (e) => {
