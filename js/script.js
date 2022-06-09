@@ -122,7 +122,7 @@ function postInstance(post){
     postContainer.append(postText);
 
     
-    const upVote = document.createElement('img');
+    /*const upVote = document.createElement('img');
     upVote.className = 'card-icon3'
     upVote.src = "./assets/arrow1.png"
     postContainer.append(upVote);
@@ -130,7 +130,7 @@ function postInstance(post){
     const downVote = document.createElement('img');
     downVote.className = 'card-icon4'
     downVote.src = "./assets/arrow1.png"
-    postContainer.append(downVote);
+    postContainer.append(downVote);*/
 
     //reply
     const replyArea = document.createElement('TEXTAREA');
