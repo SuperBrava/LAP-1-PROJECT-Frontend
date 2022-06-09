@@ -164,7 +164,8 @@ function postInstance(post){
     react1.href = '#';
     react1.innerText = "👍 (" + post['post-reactions']['reaction1'] + ")";
     react1.addEventListener('click', (e)=>{
-        console.log('Reaction 1 clicked: postId=' + post['post-id']);
+        //console.log('Reaction 1 clicked: postId=' + post['post-id']);
+        submitReaction('reaction1', post['post-id']);
     });
     reactions.append(react1);
 
@@ -174,7 +175,8 @@ function postInstance(post){
     react2.href = '#';
     react2.innerText = "👻 (" + post['post-reactions']['reaction2'] + ")";
     react2.addEventListener('click', (e)=>{
-        console.log('Reaction 2 clicked: postId=' + post['post-id']);
+        //console.log('Reaction 2 clicked: postId=' + post['post-id']);
+        submitReaction('reaction2', post['post-id']);
     });
     reactions.append(react2);
 
@@ -184,7 +186,8 @@ function postInstance(post){
     react3.href = '#';
     react3.innerText = "👎 (" + post['post-reactions']['reaction3'] + ")";
     react3.addEventListener('click', (e)=>{
-        console.log('Reaction 3 clicked: postId=' + post['post-id']);;
+        //console.log('Reaction 3 clicked: postId=' + post['post-id']);
+        submitReaction('reaction3', post['post-id']);
     });
     reactions.append(react3);
 
@@ -262,6 +265,27 @@ async function addComment(comment, id) {
         postId: id
     };
     fetch('http://localhost:5000/post/comment',  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+    .catch((error) => {
+        console.error('Error:', error);
+        });
+        location.reload();
+};
+
+async function submitReaction(reactionType, postId) {
+    const data = 
+        { 
+            postId: postId,
+            replyId: null,
+            topic: category, 
+            reactionType: reactionType
+    };
+    fetch('http://localhost:5000/post/reaction',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
