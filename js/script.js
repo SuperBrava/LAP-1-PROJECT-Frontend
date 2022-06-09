@@ -219,10 +219,10 @@ function postInstance(post){
 
     replyBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const postID = parseInt(postContainer.dataset.postid);
+        const postId = parseInt(post['post-id']);
+        const postTopic = post['post-topic'];
         const comment = replyArea.value;
-
-        addComment(comment, postID);
+        addComment(postId, postTopic, comment);
     })
 
 
@@ -327,11 +327,12 @@ async function callPost() {
         
 };
 
-async function addComment(comment, id) {
+async function addComment(postId, postTopic, comment) {
     const data = 
-        { topic: category, 
-        comment: comment,
-        postId: id
+        { 
+            postId: postId,
+            topic: postTopic, 
+            comment: comment
     };
     fetch('http://localhost:5000/post/comment',  {
         method: 'POST',
