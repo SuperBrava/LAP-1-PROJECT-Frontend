@@ -113,6 +113,7 @@ function postInstance(post){
     postContainer.dataset.postid = post["post-id"];
     
     const title = document.createElement('h4');
+    title.className = "secondh4"
     title.innerText = "Windoge XP";
     postContainer.append(title);
 
