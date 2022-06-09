@@ -100,6 +100,7 @@ module.exports = init;
 function postInstance(post){
     const postContainer = document.createElement('div');
     postContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10 post"
+    postContainer.dataset.postID = "post-id";
     
     const title = document.createElement('h4');
     title.innerText = "Windoge XP";
