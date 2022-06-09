@@ -177,7 +177,7 @@ function postInstance(post){
     document.querySelector('#postResults').append(postContainer);
 }
 
-module.exports = postInstance;
+
 
 //Create and append available comments to posts
 function appendComments(comment){
@@ -189,16 +189,49 @@ function appendComments(comment){
     return commentContainer;
 }
 
+let category = document.querySelector("#category").innerHTML.toLowerCase();
+console.log(category);
+
 // JSON integration to FE
-// fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/topic/programming')
-//     .then(r => r.json())
-//     .then(r => {
-//         r.data.forEach(element => postInstance(element));
-//     })
-//     .catch(console.warn);
+function fetchLoading () {
+    fetch(`http://localhost:5000/get/posts/${category}`)
+        .then(r => r.json())
+        .then(r => {
+            r.data.forEach(element => postInstance(element));
+        })
+        .catch(console.warn);
+    };
 
-// document.querySelector("postInstance")
+// JSON POST Data
 
+let newPost = document.querySelector("#postbartitle").innerText;
+
+console.log(newPost);
+
+
+async function callPost() {
+    const data = 
+        { postTopic: category, 
+            postTitle: document.querySelector("#postbartitle").value,  
+        postBody: document.querySelector("#postbar").value
+    };
+    fetch('http://localhost:5000/post/post/',  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+    .catch((error) => {
+        console.error('Error:', error);
+        });
+};
+
+let submitPost = document.querySelector("#submitPost").addEventListener("click", (e) => {
+    e.preventDefault();
+    callPost();
+    fetchLoading()
+});
 
 //for this function I need to add a pop up for the text area reply box too 
 //add also one for the new h2 
@@ -210,3 +243,5 @@ function appendComments(comment){
 //         console.log(jsonString);
     
 // });
+
+fetchLoading();
