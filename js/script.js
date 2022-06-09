@@ -8,8 +8,8 @@ $(document).ready(function() {
 })
 */
 
-const hostAndPort = 'https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com'; // This is for production
-//const hostAndPort = 'http://localhost:5000'; // This is for local testing
+//const hostAndPort = 'https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com'; // This is for production
+const hostAndPort = 'http://localhost:5000'; // This is for local testing
 
 let category = "programming";
 let keyword = "";
@@ -46,15 +46,7 @@ searchButton.addEventListener('click', (e) => {
 
 const curPage = window.location.pathname;
 if (curPage.includes('topic.html')) {
-    if (keyword !== "") {
-        document.querySelector("#category").innerHTML = 'Search Result: <br>' + capitalizeFirstLetter(keyword);
-        document.title = 'Windoge XP - ' + capitalizeFirstLetter(keyword);
-        submitSearch(keyword);
-    } else {
-        document.querySelector("#category").innerHTML = capitalizeFirstLetter(category);
-        document.title = 'Windoge XP - ' + capitalizeFirstLetter(category);
-        fetchLoading(category);
-    }
+    reloadPage(keyword, category);
 
     document.getElementById("hidediv").style.display = "none";
     let newPost = document.querySelector("#postbartitle").innerText;
@@ -183,6 +175,18 @@ function capitalizeFirstLetter(string) {
 // module.exports = init;
 //just working on the gify api 
 
+function reloadPage(keyword, category) {
+    if (keyword !== "") {
+        document.querySelector("#category").innerHTML = 'Search Result: <br>' + capitalizeFirstLetter(keyword);
+        document.title = 'Windoge XP - ' + capitalizeFirstLetter(keyword);
+        submitSearch(keyword);
+    } else {
+        document.querySelector("#category").innerHTML = capitalizeFirstLetter(category);
+        document.title = 'Windoge XP - ' + capitalizeFirstLetter(category);
+        fetchLoading(category);
+    }
+}
+
 function emptyInstance() {
     document.querySelector('#postResults').innerHTML = "";
 }
@@ -194,7 +198,7 @@ function postInstance(post){
     postContainer.dataset.postid = post["post-id"];
     
     const title = document.createElement('h4');
-    title.innerText = "Windoge XP";
+    title.innerText = '> ' + post["post-topic"] + ' > ' + post["post-id"];
     postContainer.append(title);
 
     const posttitle = document.createElement('h2');
@@ -207,7 +211,7 @@ function postInstance(post){
     
     const textSpan = document.createElement('span');
     textSpan.className = "span1"
-    textSpan.innerText = post["post-body"];
+    textSpan.innerText = '> ' + post["post-body"];
 
     postText.append(textSpan);
     postContainer.append(postText);
@@ -226,13 +230,13 @@ function postInstance(post){
     //reply
     const replyArea = document.createElement('TEXTAREA');
     replyArea.className = "replyArea";
-    replyArea.placeholder = "Comment here";
+    replyArea.placeholder = "> reply here";
     postContainer.append(replyArea);
 
     const replyBtn = document.createElement('a');
     replyBtn.className = 'btn';
-    replyBtn.href = '#';
-    replyBtn.innerText = "reply";
+    replyBtn.href = 'javascript:void(0);';
+    replyBtn.innerText = "ENTER";
     postContainer.append(replyBtn);
 
     replyBtn.addEventListener('click', (e) => {
@@ -252,7 +256,7 @@ function postInstance(post){
     const react1 = document.createElement('a');
     react1.className = 'btn';
     react1.id = "reaction1";
-    react1.href = '#';
+    react1.href = 'javascript:void(0);';
     react1.innerText = "👍 (" + post['post-reactions']['reaction1'] + ")";
     react1.addEventListener('click', (e)=>{
         submitReaction('reaction1', post['post-topic'], post['post-id']);
@@ -262,7 +266,7 @@ function postInstance(post){
     const react2 = document.createElement('a');
     react2.className = 'btn';
     react1.id = "reaction2"
-    react2.href = '#';
+    react2.href = 'javascript:void(0);';
     react2.innerText = "👻 (" + post['post-reactions']['reaction2'] + ")";
     react2.addEventListener('click', (e)=>{
         submitReaction('reaction2', post['post-topic'], post['post-id']);
@@ -272,7 +276,7 @@ function postInstance(post){
     const react3 = document.createElement('a');
     react3.className = 'btn';
     react1.id = "reaction3";
-    react3.href = '#';
+    react3.href = 'javascript:void(0);';
     react3.innerText = "👎 (" + post['post-reactions']['reaction3'] + ")";
     react3.addEventListener('click', (e)=>{
         submitReaction('reaction3', post['post-topic'], post['post-id']);
@@ -333,7 +337,7 @@ async function callPost() {
         })
     .then(() => {
         //emptyInstance();
-        //fetchLoading();
+        //reloadPage(keyword, category);
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -356,8 +360,8 @@ async function addComment(postId, postTopic, comment) {
         body: JSON.stringify(data),
         })
     .then(() => {
-        //emptyInstance();
-        //fetchLoading();
+        emptyInstance();
+        reloadPage(keyword, category);
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -381,8 +385,8 @@ async function submitReaction(reactionType, topic, postId) {
         body: JSON.stringify(data),
         })
     .then(() => {
-        //emptyInstance();
-        //fetchLoading();
+        emptyInstance();
+        reloadPage(keyword, category);
     })
     .catch((error) => {
         console.error('Error:', error);
