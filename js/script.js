@@ -93,14 +93,14 @@ function init() {
   });
 }
 
-module.exports = init;
+// module.exports = init;
 //just working on the gify api 
 
 // creates a html elements and populates innertext with post data
 function postInstance(post){
     const postContainer = document.createElement('div');
     postContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10 post"
-    postContainer.dataset.postID = "post-id";
+    postContainer.dataset.postid = post["post-id"];
     
     const title = document.createElement('h4');
     title.innerText = "Windoge XP";
@@ -110,11 +110,18 @@ function postInstance(post){
     posttitle.innerText = post["post-title"];
     postContainer.append(posttitle);
 
-    const postText = document.createElement('p');
-    postText.className = "card-text";
-    postText.innerText = post["post-body"];
+    const postText = document.createElement('div');
+    postText.contentEditable = "true";
+    postText.className = "out";
+    
+    const textSpan = document.createElement('span');
+    textSpan.className = "span1"
+    textSpan.innerText = post["post-body"];
+
+    postText.append(textSpan);
     postContainer.append(postText);
 
+    
     const upVote = document.createElement('img');
     upVote.className = 'card-icon3'
     upVote.src = "./assets/arrow1.png"
@@ -136,6 +143,15 @@ function postInstance(post){
     replyBtn.href = '#';
     replyBtn.innerText = "reply";
     postContainer.append(replyBtn);
+
+    replyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const postID = parseInt(postContainer.dataset.postid);
+        const comment = replyArea.value;
+
+        addComment(comment, postID);
+    })
+
 
     //reactions group container
     const reactions = document.createElement('span');
@@ -214,8 +230,9 @@ async function callPost() {
     const data = 
         { postTopic: category, 
             postTitle: document.querySelector("#postbartitle").value,  
-        postBody: document.querySelector("#postbar").value
+        postBody: document.querySelector("#postbar").textContent
     };
+    console.log(data)
     fetch('http://localhost:5000/post/post/',  {
         method: 'POST',
         headers: {
@@ -226,7 +243,28 @@ async function callPost() {
     .catch((error) => {
         console.error('Error:', error);
         });
+        
 };
+
+async function addComment(comment, id) {
+    const data = 
+        { topic: category, 
+        comment: comment,
+        postId: id
+    };
+    fetch('http://localhost:5000/post/comment',  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+    .catch((error) => {
+        console.error('Error:', error);
+        });
+        location.reload();
+};
+
 
 let submitPost = document.querySelector("#submitPost").addEventListener("click", (e) => {
     e.preventDefault();
