@@ -237,8 +237,7 @@ function postInstance(post){
     react1.href = '#';
     react1.innerText = "👍 (" + post['post-reactions']['reaction1'] + ")";
     react1.addEventListener('click', (e)=>{
-        //console.log('Reaction 1 clicked: postId=' + post['post-id']);
-        submitReaction('reaction1', post['post-id']);
+        submitReaction('reaction1', post['post-topic'], post['post-id']);
     });
     reactions.append(react1);
 
@@ -248,8 +247,7 @@ function postInstance(post){
     react2.href = '#';
     react2.innerText = "👻 (" + post['post-reactions']['reaction2'] + ")";
     react2.addEventListener('click', (e)=>{
-        //console.log('Reaction 2 clicked: postId=' + post['post-id']);
-        submitReaction('reaction2', post['post-id']);
+        submitReaction('reaction2', post['post-topic'], post['post-id']);
     });
     reactions.append(react2);
 
@@ -259,8 +257,7 @@ function postInstance(post){
     react3.href = '#';
     react3.innerText = "👎 (" + post['post-reactions']['reaction3'] + ")";
     react3.addEventListener('click', (e)=>{
-        //console.log('Reaction 3 clicked: postId=' + post['post-id']);
-        submitReaction('reaction3', post['post-id']);
+        submitReaction('reaction3', post['post-topic'], post['post-id']);
     });
     reactions.append(react3);
 
@@ -353,12 +350,12 @@ async function addComment(comment, id) {
         location.reload();
 };
 
-async function submitReaction(reactionType, postId) {
+async function submitReaction(reactionType, topic, postId) {
     const data = 
         { 
             postId: postId,
             replyId: null,
-            topic: category, 
+            topic: topic, 
             reactionType: reactionType
     };
     fetch('http://localhost:5000/post/reaction',  {
