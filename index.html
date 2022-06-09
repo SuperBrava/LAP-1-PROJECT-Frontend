@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./assets/retrofont.ttf">
     
+    <script defer href="./js/script.js"> </script>
     <title>Windoge XP</title>
 </head>
 <body>
@@ -24,10 +25,10 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <form class="form-inline ml-auto my-2 my-lg-0"> <!--Centered-->
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-            </form>
+          <div class="form-inline ml-auto my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchKeyword">
+            <a class="btn btn-outline-dark my-2 my-sm-0" id="search-button">Search</a>
+          </div>
           <ul class="navbar-nav ml-auto"> <!--Right aligned-->
             <li class="nav-item">
               <a class="nav-link text-white" href="index.html">Home</a>
@@ -53,7 +54,7 @@
             <!--just trying to position the images nicely on the page-->
             <img class="card-icon2" src="./assets/Retro windows loading bar.png" alt="loading icon">
             <h5 class="card-title">Gaming</h5>
-            <a href="gaming.html" class="btn">Explore</a>
+            <a href="topic.html?topic=gaming" class="btn">Explore</a>
             </div>
           </div>
           <div class="col-5">
@@ -63,7 +64,7 @@
             <img class="card-icon" src="./assets/Better retro comp.png" alt="computer icon">
             <img class="card-icon2" src="./assets/Retro windows loading bar.png" alt="loading icon">
             <h5 class="card-title">Programming</h5>
-            <a href="programming.html" class="btn">Explore</a>
+            <a href="topic.html?topic=programming" class="btn">Explore</a>
         </div>
           </div>
       </div>
@@ -79,7 +80,7 @@
             <img class="card-icon" src="./assets/Better retro comp.png" alt="computer icon">
             <img class="card-icon2" src="./assets/Retro windows loading bar.png" alt="loading icon">
             <h5 class="card-title">Graphics</h5>
-            <a href="graphics.html" class="btn">Explore</a>
+            <a href="topic.html?topic=graphics" class="btn">Explore</a>
         </div>
           </div>
           <div class="col-5">
@@ -89,7 +90,7 @@
             <img class="card-icon" src="./assets/Better retro comp.png" alt="computer icon">
             <img class="card-icon2" src="./assets/Retro windows loading bar.png" alt="loading icon">
             <h5 class="card-title">Technology</h5>
-            <a href="technology.html" class="btn">Explore</a>
+            <a href="topic.html?topic=technology" class="btn">Explore</a>
         </div>
           </div>
       </div>
@@ -97,7 +98,7 @@
 </body>
 
 <!-- Backend -->
-<script src="./js/backend.js"></script>
+<!--<script src="./js/backend.js"></script>-->
 
 <!-- Jquery Script-->
 <script
@@ -109,7 +110,7 @@ crossorigin="anonymous"></script>
 
 <!-- Emoji Picker Plugin -->
 <script src="./js/emojionearea.min.js"></script>
-<script  src="./js/script.js"> </script>
+<!--<script  src="./js/script.js"> </script>-->
 <script>
 $(document).ready(function() {
   $("#postbar").emojioneArea({
