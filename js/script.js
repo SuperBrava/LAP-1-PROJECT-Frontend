@@ -91,16 +91,26 @@ function init() {
         console.error(err);
       });
   });
+
+  let searchForm = document.querySelector("#search-form");
+  searchForm.addEventListener('submit', (e) => {
+      let keyword = e.target.searchKeyword.value;
+      submitSearch(keyword);
+  });
 }
 
-module.exports = init;
+// module.exports = init;
 //just working on the gify api 
+
+function emptyInstance() {
+    document.querySelector('#postResults').innerHTML = "";
+}
 
 // creates a html elements and populates innertext with post data
 function postInstance(post){
     const postContainer = document.createElement('div');
     postContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10 post"
-    postContainer.dataset.postID = "post-id";
+    postContainer.dataset.postid = post["post-id"];
     
     const title = document.createElement('h4');
     title.innerText = "Windoge XP";
@@ -110,14 +120,19 @@ function postInstance(post){
     posttitle.innerText = post["post-title"];
     postContainer.append(posttitle);
 
-    const postText = document.createElement('p');
-    postText.className = "card-text";
-    postText.innerText = post["post-body"];
+    const postText = document.createElement('div');
+    postText.contentEditable = "true";
+    postText.className = "out";
+    
+    const textSpan = document.createElement('span');
+    textSpan.className = "span1"
+    textSpan.innerText = post["post-body"];
+
+    postText.append(textSpan);
     postContainer.append(postText);
 
-
-    /*
-    const upVote = document.createElement('img');
+    
+    /*const upVote = document.createElement('img');
     upVote.className = 'card-icon3'
     upVote.src = "./assets/arrow1.png"
     postContainer.append(upVote);
@@ -125,8 +140,7 @@ function postInstance(post){
     const downVote = document.createElement('img');
     downVote.className = 'card-icon4'
     downVote.src = "./assets/arrow1.png"
-    postContainer.append(downVote);
-    */
+    postContainer.append(downVote);*/
 
     //reply
     const replyArea = document.createElement('TEXTAREA');
@@ -140,6 +154,15 @@ function postInstance(post){
     replyBtn.innerText = "reply";
     postContainer.append(replyBtn);
 
+    replyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const postID = parseInt(postContainer.dataset.postid);
+        const comment = replyArea.value;
+
+        addComment(comment, postID);
+    })
+
+
     //reactions group container
     const reactions = document.createElement('span');
     reactions.className = 'reaction-group';
@@ -149,21 +172,33 @@ function postInstance(post){
     react1.className = 'btn';
     react1.id = "reaction1";
     react1.href = '#';
-    react1.innerText = "reaction1";
+    react1.innerText = "👍 (" + post['post-reactions']['reaction1'] + ")";
+    react1.addEventListener('click', (e)=>{
+        //console.log('Reaction 1 clicked: postId=' + post['post-id']);
+        submitReaction('reaction1', post['post-id']);
+    });
     reactions.append(react1);
 
     const react2 = document.createElement('a');
     react2.className = 'btn';
-    react1.id = "reaction2";
+    react1.id = "reaction2"
     react2.href = '#';
-    react2.innerText = "reaction2";
+    react2.innerText = "👻 (" + post['post-reactions']['reaction2'] + ")";
+    react2.addEventListener('click', (e)=>{
+        //console.log('Reaction 2 clicked: postId=' + post['post-id']);
+        submitReaction('reaction2', post['post-id']);
+    });
     reactions.append(react2);
 
     const react3 = document.createElement('a');
     react3.className = 'btn';
     react1.id = "reaction3";
     react3.href = '#';
-    react3.innerText = "reaction3";
+    react3.innerText = "👎 (" + post['post-reactions']['reaction3'] + ")";
+    react3.addEventListener('click', (e)=>{
+        //console.log('Reaction 3 clicked: postId=' + post['post-id']);
+        submitReaction('reaction3', post['post-id']);
+    });
     reactions.append(react3);
 
     postContainer.append(reactions);
@@ -188,7 +223,7 @@ function appendComments(comment){
     const commentContainer = document.createElement('span');
     const commentText = document.createElement('p');
     commentText.className = "comment";
-    commentText.innerText = comment["reply-body"];
+    commentText.innerText = "> " + comment["reply-body"];
     commentContainer.append(commentText);
     return commentContainer;
 }
@@ -198,7 +233,7 @@ console.log(category);
 
 // JSON integration to FE
 function fetchLoading () {
-    fetch(`http://localhost:5000/get/posts/${category}`)
+    fetch(`https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/get/posts/${category}`)
         .then(r => r.json())
         .then(r => {
             r.data.forEach(element => postInstance(element));
@@ -217,19 +252,83 @@ async function callPost() {
     const data = 
         { postTopic: category, 
             postTitle: document.querySelector("#postbartitle").value,  
-        postBody: document.querySelector("#postbar").value
+        postBody: document.querySelector("#postbar").textContent
     };
-    fetch('http://localhost:5000/post/post/',  {
+    console.log(data)
+    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/post/',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
         })
+    .then(() => {
+        //emptyInstance();
+        //fetchLoading();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        });
+        
+};
+
+async function addComment(comment, id) {
+    const data = 
+        { topic: category, 
+        comment: comment,
+        postId: id
+    };
+    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/comment',  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+    .then(() => {
+        //emptyInstance();
+        //fetchLoading();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        });
+        location.reload();
+};
+
+async function submitReaction(reactionType, postId) {
+    const data = 
+        { 
+            postId: postId,
+            replyId: null,
+            topic: category, 
+            reactionType: reactionType
+    };
+    fetch('https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com/post/reaction',  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+    .then(() => {
+        //emptyInstance();
+        //fetchLoading();
+    })
     .catch((error) => {
         console.error('Error:', error);
         });
 };
+
+function submitSearch(keyword) {
+    emptyInstance();
+    fetch(`http://localhost:5000/post/topic/search/${keyword}`)
+        .then(r => r.json())
+        .then(r => {
+            r.forEach(element => postInstance(element));
+        })
+        .catch(console.warn);
+}
+
 
 let submitPost = document.querySelector("#submitPost").addEventListener("click", (e) => {
     e.preventDefault();
