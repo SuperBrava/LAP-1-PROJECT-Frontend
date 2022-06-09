@@ -44,18 +44,22 @@
       <form id="createPost">
         <h2>Create a post</h2>
 
-        <form>
-          <label for="search" placeholder="Search for a gif">Search</label>
-          <input id="search" type="search"/>
-          <button id="btnSearch">Go</button>
-        </form>
-        <div class="out"></div>
+        <!--form for the giphy api creating a button and then display the search and then you can search a giph and maybe drop and drag into textarea box-->
       
         <div class="textareadiv">
             <h5></h5>
-            <textarea id="postbartitle" name="postbar" maxlength="100" rows="2" cols="25" placeholder="Post title" required></textarea>
-            <textarea id="postbar" name="postbar" maxlength="250" rows="4" cols="50" placeholder="Enlighten us using 250 characters" required></textarea>
-          <input id="submitPost" type="button" class="btn" name="submit" value="Update my file">
+            <textarea id="postbartitle" name="postbar" maxlength="75" rows="2" cols="25" placeholder="Post title" ></textarea>
+              <div onkeypress="return (this.innerText.length <= 250)"contenteditable="true" name="postbar" rows="4" cols="50" class="editdiv"><span class="span1">Enlighten us using 250 characters<div class="out"></div></span></div>
+            <form>
+              <div id ="hidediv">
+              <label for="search" placeholder="Search for a gif">Search</label>
+              <input type="search" id="search"/>
+              <button id="btnSearch">Go</button>
+            </div>
+            </form>
+            <!--done it the wrong way around fixing it now -->
+            <input type="submit" class="btn" id="gif" name="search" value="Add a gif" onclick="hideSearch()">
+          <input  id="submitPost" type="button" class="btn" name="submit" value="Update my file">
         </div>
       </form>
 
@@ -64,6 +68,8 @@
         <section id="postResults">
 
         </section>
+
+        
 
         <!-- <div class="m-auto mt-5 col-lg-7 col-md-8 col-sm-10">
         <div class="post">

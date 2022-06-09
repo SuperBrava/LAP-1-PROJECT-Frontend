@@ -81,6 +81,7 @@ h1{
     display: flex;
     justify-content: space-around;
     padding-top: 75px;
+    margin-bottom: 30px;
 }
 
 h2{
@@ -103,6 +104,8 @@ h4{
 h6{
     text-align: center;
     padding-top: 40px;
+    margin-bottom: 30px;
+    font-size: 16pt;
 }
 
 .card{
@@ -115,6 +118,28 @@ h6{
 
 #postbar{
     margin-left:75px;
+}
+
+.editdiv{
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px rgba(224, 211, 211, 0.753),
+    4px 4px 0px 0px rgba(80, 78, 78, 0.753);
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.replyArea{
+    width:950px;
+    height:100px;
+    box-shadow: 2px 2px 2px 2px rgba(224, 211, 211, 0.753),
+    4px 4px 0px 0px rgba(44, 42, 42, 0.753);
+    font-size: 14pt;
+}
+
+#postbartitle{
+    box-shadow: 2px 2px 2px 2px rgba(224, 211, 211, 0.753),
+    4px 4px 0px 0px rgba(80, 78, 78, 0.753);
+    margin-top: 30px; 
 }
 
 /* .textareadiv{
@@ -143,8 +168,6 @@ textarea{
     font-family: 'retrofont';
     overflow: hidden; 
 }
-
-
 
 @font-face {
     font-family: 'retrofont';
@@ -202,3 +225,18 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+
+#postbartitle{
+    width: 50vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.span1{
+    display: block;
+    min-height: xxx px;
+    height: 200px;
+    width: 1065px;
+}
+
