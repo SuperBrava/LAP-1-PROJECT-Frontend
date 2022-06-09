@@ -7,9 +7,9 @@ $(document).ready(function() {
     });
 })
 */
-/*
 
-this is to hide the search bar still need to fix it 
+
+
 
 document.getElementById("hidediv").style.display = "none";
 
@@ -23,7 +23,7 @@ function hideSearch(){
     x.style.display = "none";
 }
 }
-*/
+
 
 
 /*
