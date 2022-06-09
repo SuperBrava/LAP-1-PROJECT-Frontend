@@ -8,6 +8,9 @@ $(document).ready(function() {
 })
 */
 
+const hostAndPort = 'https://api.allorigins.win/raw?url=https://portfolio-project-1-backend.herokuapp.com';
+//const hostAndPort = 'http://localhost:5000';
+
 let category = "programming";
 let keyword = "";
 
@@ -100,7 +103,7 @@ if (curPage.includes('topic.html')) {
 
 if (curPage.includes('topics.html')) {
 
-    fetch(`http://localhost:5000/post/topic/all`)
+    fetch(`${hostAndPort}/post/topic/all`)
         .then(r => r.json())
         .then(r => {
             listAllTopics(r);
@@ -305,7 +308,7 @@ function appendComments(comment){
 
 // JSON integration to FE
 function fetchLoading () {
-    fetch(`http://localhost:5000/post/topic/${category}`)
+    fetch(`${hostAndPort}/post/topic/${category}`)
         .then(r => r.json())
         .then(r => {
             r.data.forEach(element => postInstance(element));
@@ -321,7 +324,7 @@ async function callPost() {
         postBody: document.querySelector("#postbar").textContent
     };
     console.log(data)
-    fetch('http://localhost:5000/post/post/',  {
+    fetch('${hostAndPort}/post/post/',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -345,7 +348,7 @@ async function addComment(postId, postTopic, comment) {
             topic: postTopic, 
             comment: comment
     };
-    fetch('http://localhost:5000/post/comment',  {
+    fetch('${hostAndPort}/post/comment',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -370,7 +373,7 @@ async function submitReaction(reactionType, topic, postId) {
             topic: topic, 
             reactionType: reactionType
     };
-    fetch('http://localhost:5000/post/reaction',  {
+    fetch('${hostAndPort}/post/reaction',  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -388,7 +391,7 @@ async function submitReaction(reactionType, topic, postId) {
 
 function submitSearch(searchKeyword) {
     emptyInstance();
-    fetch(`http://localhost:5000/post/topic/search/${searchKeyword}`)
+    fetch(`${hostAndPort}/post/topic/search/${searchKeyword}`)
         .then(r => r.json())
         .then(r => {
             r.forEach(element => postInstance(element));
@@ -401,7 +404,7 @@ function submitSearch(searchKeyword) {
 
 // const fs = require('fs');
 
-// fs.readFile('http://localhost:5000/get/readPost', 'utf-8', (err, jsonString) => {
+// fs.readFile('${hostAndPort}/get/readPost', 'utf-8', (err, jsonString) => {
     
 //         console.log(jsonString);
     
