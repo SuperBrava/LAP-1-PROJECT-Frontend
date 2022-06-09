@@ -324,7 +324,7 @@ async function callPost() {
         postBody: document.querySelector("#postbar").textContent
     };
     console.log(data)
-    fetch('${hostAndPort}/post/post/',  {
+    fetch(`${hostAndPort}/post/post/`,  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -348,7 +348,7 @@ async function addComment(postId, postTopic, comment) {
             topic: postTopic, 
             comment: comment
     };
-    fetch('${hostAndPort}/post/comment',  {
+    fetch(`${hostAndPort}/post/comment`,  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -373,7 +373,7 @@ async function submitReaction(reactionType, topic, postId) {
             topic: topic, 
             reactionType: reactionType
     };
-    fetch('${hostAndPort}/post/reaction',  {
+    fetch(`${hostAndPort}/post/reaction`,  {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -404,7 +404,7 @@ function submitSearch(searchKeyword) {
 
 // const fs = require('fs');
 
-// fs.readFile('${hostAndPort}/get/readPost', 'utf-8', (err, jsonString) => {
+// fs.readFile(`${hostAndPort}/get/readPost`, 'utf-8', (err, jsonString) => {
     
 //         console.log(jsonString);
     
