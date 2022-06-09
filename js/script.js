@@ -36,23 +36,13 @@ searchButton.addEventListener('click', (e) => {
     const keywordElement = document.querySelector("#searchKeyword");
     let searchKeyword = keywordElement.value;
     let destination;
-    let currentUrl = window.location.href;
-    console.log(currentUrl);
-    let tokens = currentUrl.split('?');
-    if (curPage.includes('topic.html')) {
-        destination = tokens[0]+'?keyword='+searchKeyword;
-        window.location.href = destination;
-        //e.preventDefault();
-    } else if (curPage.includes('index.html')) {
-        destination = 'topic.html?keyword='+searchKeyword;
-        window.location.href = destination;
-        //e.preventDefault();
-    }
+    destination = 'topic.html?keyword='+searchKeyword;
+    window.location.href = destination;
 });
 
 
 const curPage = window.location.pathname;
-if (!curPage.includes('index.html')) {
+if (curPage.includes('topic.html')) {
     if (keyword !== "") {
         document.querySelector("#category").innerHTML = 'Search Result: <br>' + capitalizeFirstLetter(keyword);
         document.title = 'Windoge XP - ' + capitalizeFirstLetter(keyword);
@@ -108,14 +98,32 @@ if (!curPage.includes('index.html')) {
     }
 }
 
-if (curPage.includes('menu.html')) {
+if (curPage.includes('topics.html')) {
 
     fetch(`http://localhost:5000/post/topic/all`)
         .then(r => r.json())
         .then(r => {
-            r.data.forEach(element => postInstance(element));
+            listAllTopics(r);
         })
         .catch(console.warn);
+}
+
+function listAllTopics(listOfTopic) {
+    let currentUrl = window.location.host;
+    let tokens = currentUrl.split('?');
+
+    const topicContainer = document.createElement('div');
+    topicContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10";
+    listOfTopic.map((curTopic) => {
+        let anchor = document.createElement('a');
+        anchor.text = '> ' + curTopic;
+        anchor.href = 'topic.html?topic=' + curTopic;
+        topicContainer.append(anchor);
+        let lineBreaker = document.createElement('br');
+        topicContainer.append(lineBreaker);
+        topicContainer.append(lineBreaker);
+    });
+    document.querySelector('#topicList').append(topicContainer);
 }
 
 
