@@ -39,11 +39,11 @@ searchButton.addEventListener('click', (e) => {
     let currentUrl = window.location.href;
     console.log(currentUrl);
     let tokens = currentUrl.split('?');
-    if (!curPage.includes('index.html')) {
+    if (curPage.includes('topic.html')) {
         destination = tokens[0]+'?keyword='+searchKeyword;
         window.location.href = destination;
         //e.preventDefault();
-    } else {
+    } else if (curPage.includes('index.html')) {
         destination = 'topic.html?keyword='+searchKeyword;
         window.location.href = destination;
         //e.preventDefault();
@@ -108,8 +108,15 @@ if (!curPage.includes('index.html')) {
     }
 }
 
+if (curPage.includes('menu.html')) {
 
-
+    fetch(`http://localhost:5000/post/topic/all`)
+        .then(r => r.json())
+        .then(r => {
+            r.data.forEach(element => postInstance(element));
+        })
+        .catch(console.warn);
+}
 
 
 function hideSearch(){
@@ -299,10 +306,6 @@ function fetchLoading () {
     };
 
 // JSON POST Data
-
-
-
-
 async function callPost() {
     const data = 
         { postTopic: category, 
