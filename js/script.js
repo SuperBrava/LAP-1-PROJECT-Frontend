@@ -115,6 +115,8 @@ function postInstance(post){
     postText.innerText = post["post-body"];
     postContainer.append(postText);
 
+
+    /*
     const upVote = document.createElement('img');
     upVote.className = 'card-icon3'
     upVote.src = "./assets/arrow1.png"
@@ -124,6 +126,7 @@ function postInstance(post){
     downVote.className = 'card-icon4'
     downVote.src = "./assets/arrow1.png"
     postContainer.append(downVote);
+    */
 
     //reply
     const replyArea = document.createElement('TEXTAREA');
