@@ -332,7 +332,7 @@ async function callPost() {
     const data = 
         { postTopic: category, 
             postTitle: document.querySelector("#postbartitle").value,  
-        postBody: document.querySelector("#postbar").textContent
+        postBody: document.querySelector(".postbartext").textContent
     };
     console.log(data)
     fetch(`${hostAndPort}/post/post/`,  {

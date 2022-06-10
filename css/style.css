@@ -16,6 +16,7 @@
     background-color:#233db1;
 }
 
+
 .doge{
     width: 200px;
     height: 200px;
@@ -29,10 +30,6 @@
     margin-left: 200px;
 }
 
-.dogeman{
-    margin:0;
-    padding:0;
-}
 
 /*need to align the buttons*/
 
@@ -151,7 +148,9 @@ h6{
     4px 4px 0px 0px rgba(80, 78, 78, 0.753);
     margin-bottom: 20px;
     margin-top: 20px;
-
+    height: 200px;
+    width: 765px;
+    overflow: hidden;
 }
 
 .replyArea{
@@ -261,6 +260,7 @@ body{
 .span1{
     display: block;
     min-height: xxx px;
-    width: 100%
+    width:100%;
+   
 }
 
