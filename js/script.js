@@ -198,6 +198,8 @@ function postInstance(post){
     postContainer.dataset.postid = post["post-id"];
     
     const title = document.createElement('h4');
+    title.className = "secondh4"
+    title.innerText = "Windoge XP";
     title.innerText = '> ' + post["post-topic"] + ' > ' + post["post-id"];
     postContainer.append(title);
 
@@ -215,7 +217,6 @@ function postInstance(post){
 
     postText.append(textSpan);
     postContainer.append(postText);
-
     
     /*const upVote = document.createElement('img');
     upVote.className = 'card-icon3'
