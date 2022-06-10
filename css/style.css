@@ -16,10 +16,18 @@
     background-color:#233db1;
 }
 
+
 .doge{
     width: 200px;
     height: 200px;
     float: left;
+}
+
+.doge1{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    margin-left: 200px;
 }
 
 
@@ -249,7 +257,6 @@ body{
 .span1{
     display: block;
     min-height: xxx px;
-    height: 200px;
-    width: 1065px;
+    width:100%;
 }
 
