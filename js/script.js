@@ -194,10 +194,12 @@ function emptyInstance() {
 // creates a html elements and populates innertext with post data
 function postInstance(post){
     const postContainer = document.createElement('div');
-    postContainer.className = "m-auto mt-5 col-lg-7 col-md-8 col-sm-10 post"
+    postContainer.className = "mx-auto mb-5 mt-5 col-lg-7 col-md-8 col-sm-10 post"
     postContainer.dataset.postid = post["post-id"];
     
     const title = document.createElement('h4');
+    title.className = "secondh4"
+    title.innerText = "Windoge XP";
     title.innerText = '> ' + post["post-topic"] + ' > ' + post["post-id"];
     postContainer.append(title);
 
@@ -215,7 +217,6 @@ function postInstance(post){
 
     postText.append(textSpan);
     postContainer.append(postText);
-
     
     /*const upVote = document.createElement('img');
     upVote.className = 'card-icon3'
@@ -295,7 +296,13 @@ function postInstance(post){
 
 
     //append post instance to queried selection
-    document.querySelector('#postResults').append(postContainer);
+    const parent = document.querySelector('#postResults');
+
+    if(parent.childElementCount < 1){
+        parent.append(postContainer);
+    }else{
+        parent.insertBefore(postContainer, parent.children[0]);
+    }
 }
 
 
