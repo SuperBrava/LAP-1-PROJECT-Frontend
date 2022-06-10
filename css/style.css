@@ -22,6 +22,17 @@
     float: left;
 }
 
+.doge1{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    margin-left: 200px;
+}
+
+.dogeman{
+    margin:0;
+    padding:0;
+}
 
 /*need to align the buttons*/
 
