@@ -296,7 +296,13 @@ function postInstance(post){
 
 
     //append post instance to queried selection
-    document.querySelector('#postResults').append(postContainer);
+    const parent = document.querySelector('#postResults');
+
+    if(parent.childElementCount < 1){
+        parent.append(postContainer);
+    }else{
+        parent.insertBefore(postContainer, parent.children[0]);
+    }
 }
 
 
