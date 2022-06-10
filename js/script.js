@@ -345,6 +345,7 @@ async function callPost() {
     .then(() => {
         //emptyInstance();
         //reloadPage(keyword, category);
+        location.reload();
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -367,8 +368,9 @@ async function addComment(postId, postTopic, comment) {
         body: JSON.stringify(data),
         })
     .then(() => {
-        emptyInstance();
-        reloadPage(keyword, category);
+        //emptyInstance();
+        //reloadPage(keyword, category);
+        location.reload();
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -392,8 +394,9 @@ async function submitReaction(reactionType, topic, postId) {
         body: JSON.stringify(data),
         })
     .then(() => {
-        emptyInstance();
-        reloadPage(keyword, category);
+        //emptyInstance();
+        //reloadPage(keyword, category);
+        location.reload();
     })
     .catch((error) => {
         console.error('Error:', error);
