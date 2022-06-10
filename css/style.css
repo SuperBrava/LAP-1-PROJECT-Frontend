@@ -16,6 +16,13 @@
     background-color:#233db1;
 }
 
+.doge{
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+
 /*need to align the buttons*/
 
 .card-title, .card-text{
